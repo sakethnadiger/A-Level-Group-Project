@@ -17,3 +17,6 @@ while True:
             pygame.quit()
             
     pygame.display.update()
+   
+while True:
+    print("Yash is smelly")
