@@ -21,3 +21,5 @@ if guess == num:
     print("Smarty pants")
 else:
     print("Idiot")
+
+print("yash added new")
