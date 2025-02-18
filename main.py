@@ -1,3 +1,5 @@
+import random
+
 print("This code is from a branch")
 import pygame
 
@@ -11,3 +13,11 @@ if fartmachine == working:
 
 else:
     pass
+
+num = random.randint(0, 6)
+
+guess = int(input("Guess a number: "))
+if guess == num:
+    print("Smarty pants")
+else:
+    print("Idiot")
