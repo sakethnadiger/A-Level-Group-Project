@@ -1,13 +1,19 @@
 print("This code is from a branch")
 import pygame
+from pygame.locals import *
+
+pygame.init()
 
 print("Hello World")
 
-working = True
-fartmachine = working
+HEIGHT = 400
+WIDTH = 400
 
-if fartmachine == working:
-    print("fart")
+window = pygame.display.set_mode((HEIGHT, WIDTH))
 
-else:
-    pass
+while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            
+    pygame.display.update()
