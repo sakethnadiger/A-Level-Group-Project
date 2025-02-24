@@ -1,7 +1,7 @@
 import pygame
-import ui_elements
+import ui_elements as ui
 # ui_elements refers to the python file in the same folder. this is basically our own homemade library of classes of ui elements that we have made. see that file for more info.
-
+#BTW I HAVE SHORTENED THE UI LIBRARY NAME TO JUST "UI" - WILL SPEED UP DEVELOPMENT
 
 pygame.init() # creates an object of the pygame class to make our window
 
@@ -15,8 +15,12 @@ background.fill(pygame.Color('#FF0000'))
 BLUE = (0, 255, 255)
 
 # creating an instance of one of the ui elements i have made. a label is a thing that displays text
-yashtext = ui_elements.Label(BLUE, "yash bash cash", 0)
+yashtext = ui.Label(BLUE, "yash bash cash", 0)
 
+#just testing the button with a dummy variable
+def foo():
+    return 
+test = ui.Button((0, 0, 0), "Hello", (255, 255, 255), foo)
 
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
@@ -36,5 +40,7 @@ while is_running:
 
     # drawing the label that we defined earlier
     yashtext.draw(screen, 200, 100)
+    test.draw(screen, 300, 200)
 
     pygame.display.update()
+    

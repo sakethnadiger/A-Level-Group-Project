@@ -18,3 +18,18 @@ class Label():
         # calculations are made to ensure text is centered and the rectangle fits the text box properly
         pygame.draw.rect(surface, self.colour, (x, y, img.get_width() + 20, img.get_height() + 20))
         surface.blit(img, (x + 10, y + 10))
+
+#Inherited buton from label. Includes a new attribute called function which will run once clicked.
+class Button(Label):
+    def __init__(self, colour, text, text_colour, function):
+        super().__init__(colour, text, text_colour)
+        self.function = function
+    
+    def clicked(self):
+        self.function()
+
+# Was about to create a subroutine which would automatically check for click but there is currently no way to access width and height
+# feel free to delete or amend if using a different idea
+def check_click(x, y, width, height):
+    return
+    
