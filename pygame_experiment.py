@@ -7,7 +7,7 @@ pygame.display.set_caption('Quick Start') # sets the caption at the top of the w
 window_surface = pygame.display.set_mode((800, 600)) # sets the size of the window. theres some other ways to do fullscreen stc but we wont worry abt that now
 
 background = pygame.Surface((800, 600)) # creating a background object o make a black background
-background.fill(pygame.Color('#000000'))
+background.fill(pygame.Color('#FF0000'))
 
 
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
