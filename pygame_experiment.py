@@ -16,8 +16,11 @@ background.fill(pygame.Color('#000000'))
 is_running = True
 
 while is_running:
+    # this basically handles all the events that happen. key presses, mouse position, everything. the variable event contains all of these events. there are a lot you can have a look at a list online.
     for event in pygame.event.get():
+        # event.type helps us identify which event it is specifically to target something like a mouse press.
         if event.type == pygame.QUIT:
+            # checking if they press the x button on the window and closing if it happens
             is_running = False
 
     window_surface.blit(background, (0, 0))
