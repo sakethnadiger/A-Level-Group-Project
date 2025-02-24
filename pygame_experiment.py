@@ -6,13 +6,8 @@ pygame.init() # creates an object of the pygame class to make our window
 pygame.display.set_caption('Quick Start') # sets the caption at the top of the window
 window_surface = pygame.display.set_mode((800, 600)) # sets the size of the window. theres some other ways to do fullscreen stc but we wont worry abt that now
 
-<<<<<<< HEAD
-background = pygame.Surface((50, 50)) # creating a background object o make a black background
-background.fill(pygame.Color('#000000'))
-=======
 background = pygame.Surface((800, 600)) # creating a background object o make a black background
 background.fill(pygame.Color('#FF0000'))
->>>>>>> 5964c1452116f2f23d10e49ce77c03dd34ee69d1
 
 
 BLUE = (0, 255, 255)
