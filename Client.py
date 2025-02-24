@@ -43,8 +43,8 @@ class Player():
         self.rect = (self.x, self.y, self.width, self.height)
 
 
-def read_pos(str): # Reads the position sent as a string, splits it into two and changes them into a tupple.
-    str = str.split(",")
+def read_pos(string): # Reads the position sent as a string, splits it into two and changes them into a tuple.
+    string = string.split(",")
     return int(str[0]), int(str[1])
 
 def make_pos(tup):
