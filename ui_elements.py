@@ -5,6 +5,9 @@ import pygame
 # TLDR we're remaking tkinter from scratch
 
 # label has attributes colour, text and text_colour
+
+
+
 class Label():
     def __init__(self, width, height, colour, text, text_size, text_colour):
         self.width = width
@@ -20,8 +23,9 @@ class Label():
         self.box.fill(pygame.Color(colour))
     
     # method that draws the label to the screen. take parameters: screen to be drawn on, position x, position y
+    #CHANGE - THE CENTRE OF THE ELEMENTS IS NOW WHERE THE THEY WILL BE PLACED, NOT THE TOP LEFT
     def draw(self, surface, x, y):
-        surface.blit(self.box, (x, y))
+        surface.blit(self.box, (x - self.width/2, y - self.width/2))
         surface.blit(self.img, (x + (self.width//2) - self.img.get_width()//2, y + (self.height//2) - self.img.get_height()//2))
 
 #Inherited buton from label.

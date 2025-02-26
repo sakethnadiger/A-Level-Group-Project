@@ -15,6 +15,10 @@ BLUE = pygame.Color("#277DA1")
 BLACK = pygame.Color("#032834")
 WHITE = pygame.Color("#FFFFEF")
 
+def get_centre():
+    width, height = pygame.display.get_window_size()
+    return (width / 2, height / 2)
+
 def Colour_Pallet():
     pygame.draw.rect(screen, RED, (10, 10, 50, 50))
     pygame.draw.rect(screen, ORANGE, (60, 10, 50, 50))
@@ -69,6 +73,6 @@ while is_running:
     test.is_clicked(foo)
     reset_test.is_clicked(test.reset)
     reset_test.reset()
-
+    
     pygame.display.update()
     
