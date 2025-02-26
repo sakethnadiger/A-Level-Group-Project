@@ -6,31 +6,34 @@ import pygame
 
 # label has attributes colour, text and text_colour
 class Label():
-    def __init__(self, colour, text, text_colour):
+    def __init__(self, width, height, colour, text, text_size, text_colour):
+        self.width = width
+        self.height = height
         self.colour = colour
         self.text = text
+        self.text_size = text_size
         self.text_colour = text_colour
-        font = pygame.font.SysFont(None, 40)
+        font = pygame.font.SysFont(None, text_size)
         self.img = font.render(self.text, True, self.text_colour)
         # calculations are made to ensure text is centered and the rectangle fits the text box properly
-        self.box = pygame.Surface((self.img.get_width()+20, self.img.get_height()+20))
+        self.box = pygame.Surface((self.width, self.height))
         self.box.fill(pygame.Color(colour))
     
     # method that draws the label to the screen. take parameters: screen to be drawn on, position x, position y
     def draw(self, surface, x, y):
         surface.blit(self.box, (x, y))
-        surface.blit(self.img, (x + 10, y + 10))
+        surface.blit(self.img, (x + (self.width//2) - self.img.get_width()//2, y + (self.height//2) - self.img.get_height()//2))
 
 #Inherited buton from label.
 class Button(Label):
-    def __init__(self, colour, text, text_colour):
-        super().__init__(colour, text, text_colour)
+    def __init__(self, width, height, colour, text, text_size, text_colour):
+        super().__init__(width, height, colour, text, text_size, text_colour)
         self.pressed = False
 
     # self.hitbox is a rect that contains the clickable area.
     def draw(self, surface, x, y):
         surface.blit(self.box, (x, y))
-        surface.blit(self.img, (x + 10, y + 10))
+        surface.blit(self.img, (x + (self.width//2) - self.img.get_width()//2, y + (self.height//2) - self.img.get_height()//2))
         self.hitbox = self.box.get_rect()
         self.hitbox.x, self.hitbox.y = x, y
         
