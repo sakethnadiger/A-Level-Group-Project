@@ -19,8 +19,8 @@ yashtext = ui.Label(BLUE, "yash bash cash", 0)
 
 #just testing the button with a dummy variable
 def foo():
-    return 
-test = ui.Button((0, 0, 0), "Hello", (255, 255, 255), foo)
+    print("CLICKED")
+test = ui.Button((0, 0, 0), "Hello", (255, 255, 255))
 
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
@@ -39,8 +39,9 @@ while is_running:
     pygame.draw.rect(screen, BLUE, (10, 10, 50, 50))
 
     # drawing the label that we defined earlier
-    yashtext.draw(screen, 200, 100)
+    yashtext.draw(screen, 500, 500)
     test.draw(screen, 300, 200)
+    test.is_clicked(foo)
 
     pygame.display.update()
     
