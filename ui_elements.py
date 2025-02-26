@@ -39,7 +39,7 @@ class Label():
         new_x = convert_coords(x, y)[0]
         new_y = convert_coords(x, y)[1]
         centred_x = new_x - self.width//2
-        centred_y = new_y - self.width//2
+        centred_y = new_y - self.height//2
         surface.blit(self.box, (centred_x, centred_y))
         surface.blit(self.img, (centred_x + (self.width//2) - self.img.get_width()//2, centred_y + (self.height//2) - self.img.get_height()//2))
 
@@ -51,10 +51,9 @@ class Button(Label):
 
     # self.hitbox is a rect that contains the clickable area.
     def draw(self, surface, x, y):
-        new_x = convert_coords(x, y)[0]
-        new_y = convert_coords(x, y)[1]
+        new_x, new_y = convert_coords(x, y)
         centred_x = new_x - self.width//2
-        centred_y = new_y - self.width//2
+        centred_y = new_y - self.height//2
         surface.blit(self.box, (centred_x, centred_y))
         surface.blit(self.img, (centred_x + (self.width//2) - self.img.get_width()//2, centred_y + (self.height//2) - self.img.get_height()//2))
         self.hitbox = self.box.get_rect()

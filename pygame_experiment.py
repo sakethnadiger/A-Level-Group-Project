@@ -17,7 +17,7 @@ WHITE = pygame.Color("#FFFFEF")
 
 
 
-def Colour_Pallet():
+def colour_palette():
     pygame.draw.rect(screen, RED, (10, 10, 50, 50))
     pygame.draw.rect(screen, ORANGE, (60, 10, 50, 50))
     pygame.draw.rect(screen, LIGHT_ORANGE, (110, 10, 50, 50))
@@ -33,10 +33,10 @@ def Colour_Pallet():
 
 pygame.init() # creates an object of the pygame class to make our window
 
-pygame.display.set_caption('Quick Start') # sets the caption at the top of the window
+pygame.display.set_caption('a_message') # sets the caption at the top of the window
 
-WIDTH = 600
-HEIGHT = 400
+WIDTH = 800
+HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT)) # sets the size of the window. theres some other ways to do fullscreen stc but we wont worry abt that now
 
@@ -50,8 +50,9 @@ background.fill(WHITE)
 #just testing the button with a dummy variable
 def foo():
     print("CLICKED")
-test = ui.Button(200, 25, 0, "test button", 25, (255, 255, 255))
-reset_test = ui.Button(200, 25, 0, "reset button", 25, (255, 255, 255))
+test = ui.Button(500, 100, BLACK, "test button", 125, WHITE)
+reset_test = ui.Button(200, 40, BLACK, "reset button", 40, WHITE)
+logo = ui.Label(100, 60, WHITE, "designed by saketh, harvey, yash and luca.", 25, BLACK)
 
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
@@ -67,11 +68,12 @@ while is_running:
             is_running = False
 
     screen.blit(background, (0, 0))
-    Colour_Pallet()
+    colour_palette()
 
     # drawing the label that we defined earlier
-    test.draw(screen, -0.5, 0)
-    reset_test.draw(screen, 0, -1)
+    logo.draw(screen, 0.55, -0.95)
+    test.draw(screen, 0, 0)
+    reset_test.draw(screen, 0, -0.4)
     test.is_clicked(foo)
     reset_test.is_clicked(test.reset)
     reset_test.reset()
