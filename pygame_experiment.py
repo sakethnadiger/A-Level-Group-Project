@@ -15,12 +15,13 @@ background.fill(pygame.Color('#FF0000'))
 BLUE = (0, 255, 255)
 
 # creating an instance of one of the ui elements i have made. a label is a thing that displays text
-yashtext = ui.Label(BLUE, "yash bash cash", 0)
+yashtext = ui.Label(220, 50, BLUE, "yash bash cash", 40, 0)
 
 #just testing the button with a dummy variable
 def foo():
     print("CLICKED")
-test = ui.Button((0, 0, 0), "TEST BUTTON", (255, 255, 255))
+test = ui.Button(400, 100, 0, "test button", 100, (255, 255, 255))
+reset_test = ui.Button(300, 50, 0, "reset test button", 50, (255, 255, 255))
 
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
@@ -41,7 +42,10 @@ while is_running:
     # drawing the label that we defined earlier
     yashtext.draw(screen, 500, 500)
     test.draw(screen, 300, 200)
+    reset_test.draw(screen, 300, 350)
     test.is_clicked(foo)
+    reset_test.is_clicked(test.reset)
+    reset_test.reset()
 
     pygame.display.update()
     
