@@ -20,7 +20,7 @@ yashtext = ui.Label(BLUE, "yash bash cash", 0)
 #just testing the button with a dummy variable
 def foo():
     print("CLICKED")
-test = ui.Button((0, 0, 0), "Hello", (255, 255, 255))
+test = ui.Button((0, 0, 0), "TEST BUTTON", (255, 255, 255))
 
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
