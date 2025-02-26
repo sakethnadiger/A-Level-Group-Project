@@ -45,4 +45,8 @@ class Button(Label):
     
     def reset(self):
         self.pressed = False
-    
+
+class TextInput(Label):
+    def __init__(self, colour, text_colour, text=""):
+        super().__init__(colour, text_colour)
+        self.text = text
