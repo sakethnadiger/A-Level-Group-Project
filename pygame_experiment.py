@@ -10,8 +10,6 @@ background = pygame.Surface((800, 600)) # creating a background object o make a 
 background.fill(pygame.Color('#FF0000'))
 
 
-BLUE = (0, 255, 255)
-
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
 
@@ -26,6 +24,5 @@ while is_running:
             is_running = False
 
     window_surface.blit(background, (0, 0))
-    pygame.draw.rect(window_surface, BLUE, (10, 10, 50, 50))
 
     pygame.display.update()
