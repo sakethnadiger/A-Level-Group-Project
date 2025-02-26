@@ -15,7 +15,19 @@ BLUE = pygame.Color("#277DA1")
 BLACK = pygame.Color("#032834")
 WHITE = pygame.Color("#FFFFEF")
 
-
+def Colour_Pallet():
+    pygame.draw.rect(screen, RED, (10, 10, 50, 50))
+    pygame.draw.rect(screen, ORANGE, (60, 10, 50, 50))
+    pygame.draw.rect(screen, LIGHT_ORANGE, (110, 10, 50, 50))
+    pygame.draw.rect(screen, PEACH, (160, 10, 50, 50))
+    pygame.draw.rect(screen, YELLOW, (210, 10, 50, 50))
+    pygame.draw.rect(screen, GREEN, (260, 10, 50, 50))
+    pygame.draw.rect(screen, TURQUOISE, (310, 10, 50, 50))
+    pygame.draw.rect(screen, CYAN, (360, 10, 50, 50))
+    pygame.draw.rect(screen, DARK_GREY, (410, 10, 50, 50))
+    pygame.draw.rect(screen, BLUE, (460, 10, 50, 50))
+    pygame.draw.rect(screen, BLACK, (510, 10, 50, 50))
+    pygame.draw.rect(screen, WHITE, (560, 10, 50, 50))
 
 pygame.init() # creates an object of the pygame class to make our window
 
@@ -48,7 +60,7 @@ while is_running:
             is_running = False
 
     screen.blit(background, (0, 0))
-    pygame.draw.rect(screen, BLUE, (10, 10, 50, 50))
+    Colour_Pallet()
 
     # drawing the label that we defined earlier
     yashtext.draw(screen, 500, 500)
