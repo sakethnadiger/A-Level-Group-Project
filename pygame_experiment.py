@@ -31,7 +31,7 @@ def Colour_Pallet():
 
 pygame.init() # creates an object of the pygame class to make our window
 
-pygame.display.set_caption('Quick Start') # sets the caption at the top of the window
+pygame.display.set_caption('a_message') # sets the caption at the top of the window
 screen = pygame.display.set_mode((800, 600)) # sets the size of the window. theres some other ways to do fullscreen stc but we wont worry abt that now
 
 background = pygame.Surface((800, 600)) # creating a background object o make a black background
