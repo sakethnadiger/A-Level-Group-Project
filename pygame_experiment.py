@@ -33,17 +33,16 @@ def colour_palette():
 
 pygame.init() # creates an object of the pygame class to make our window
 
-pygame.display.set_caption('a_message') # sets the caption at the top of the window
+pygame.display.set_caption('Chatroom') # sets the caption at the top of the window
 
 WIDTH = 800
 HEIGHT = 600
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT)) # sets the size of the window. theres some other ways to do fullscreen stc but we wont worry abt that now
+screen = pygame.display.set_mode((WIDTH, HEIGHT))# --> fullscreen has now been implemented
 
-
-
-background = pygame.Surface((WIDTH, HEIGHT)) # creating a background object to make a black background
-background.fill(WHITE)
+#Is the background really necessary??? easily redundant when you can just use screen.fill() --> makes fullscreen a bit easier
+# background = pygame.Surface((WIDTH, HEIGHT)) # creating a background object to make a black background
+# background.fill(WHITE)
 
 
 
@@ -58,6 +57,7 @@ logo = ui.Label(100, 60, WHITE, "designed by saketh, harvey, yash and luca.", 25
 # it is what allows us to constantly check for things like clicks and button presses each frame.
 
 is_running = True
+fullscreen = False
 
 while is_running:
     # this basically handles all the events that happen. key presses, mouse position, everything. the variable event contains all of these events. there are a lot you can have a look at a list online.
@@ -66,8 +66,21 @@ while is_running:
         if event.type == pygame.QUIT:
             # checking if they press the x button on the window and closing if it happens
             is_running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_F11:
+                fullscreen = not fullscreen
+                if fullscreen:
+                    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+                    WIDTH = pygame.display.get_window_size()[0]
+                    HEIGHT = pygame.display.get_window_size()[1]
+                    
+                else:
+                    screen = pygame.display.set_mode((800, 600))
+                    WIDTH = 800
+                    HEIGHT = 600
+                    
 
-    screen.blit(background, (0, 0))
+    #screen.blit(background, (0, 0)) --> redundant, see line 43
     colour_palette()
 
     # drawing the label that we defined earlier
@@ -81,4 +94,4 @@ while is_running:
     
     
     pygame.display.update()
-    
+    screen.fill(WHITE)
