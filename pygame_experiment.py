@@ -15,7 +15,22 @@ BLUE = pygame.Color("#277DA1")
 BLACK = pygame.Color("#032834")
 WHITE = pygame.Color("#FFFFEF")
 
-def Colour_Pallet():
+clicked = False
+
+def clicked_colour():
+    print("there")
+    clicked = True            
+def Rainbow_Button():
+    pygame.draw.rect(screen, ("#FF0000"), (10, 10, 7, 50))
+    pygame.draw.rect(screen, ("#FFA500"), (17, 10, 7, 50))
+    pygame.draw.rect(screen, ("#FFFF00"), (24, 10, 7, 50))
+    pygame.draw.rect(screen, ("#008000"), (31, 10, 7, 50))
+    pygame.draw.rect(screen, ("#0000FF"), (38, 10, 7, 50))
+    pygame.draw.rect(screen, ("#4B0082"), (45, 10, 7, 50))
+    pygame.draw.rect(screen, ("#EE82EE"), (52, 10, 7, 50))
+
+def Colour_Palette():
+    print("boop")
     pygame.draw.rect(screen, RED, (10, 10, 50, 50))
     pygame.draw.rect(screen, ORANGE, (60, 10, 50, 50))
     pygame.draw.rect(screen, LIGHT_ORANGE, (110, 10, 50, 50))
@@ -28,6 +43,8 @@ def Colour_Pallet():
     pygame.draw.rect(screen, BLUE, (460, 10, 50, 50))
     pygame.draw.rect(screen, BLACK, (510, 10, 50, 50))
     pygame.draw.rect(screen, WHITE, (560, 10, 50, 50))
+    pygame.display.update()
+        
 
 pygame.init() # creates an object of the pygame class to make our window
 
@@ -45,6 +62,7 @@ def foo():
     print("CLICKED")
 test = ui.Button(400, 100, 0, "test button", 100, (255, 255, 255))
 reset_test = ui.Button(300, 50, 0, "reset test button", 50, (255, 255, 255))
+colours = ui.Button(49, 50, 0, "text", 10 , (WHITE))
 
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
@@ -60,7 +78,12 @@ while is_running:
             is_running = False
 
     screen.blit(background, (0, 0))
-    Colour_Pallet()
+    colours.draw(screen, 10, 10)
+    colours.is_clicked(clicked_colour)
+    Rainbow_Button()
+    if clicked == True:
+        print("heloooooo")
+        Colour_Palette()
 
     # drawing the label that we defined earlier
     yashtext.draw(screen, 500, 500)
@@ -69,6 +92,5 @@ while is_running:
     test.is_clicked(foo)
     reset_test.is_clicked(test.reset)
     reset_test.reset()
-
     pygame.display.update()
     
