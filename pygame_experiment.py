@@ -43,7 +43,7 @@ pygame.display.set_caption('Chatroom') # sets the caption at the top of the wind
 WIDTH = 800
 HEIGHT = 600
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))# --> fullscreen has now been implemented
+screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)# --> fullscreen has now been implemented
 
 #Is the background really necessary??? easily redundant when you can just use screen.fill() --> makes fullscreen a bit easier
 # background = pygame.Surface((WIDTH, HEIGHT)) # creating a background object to make a black background
