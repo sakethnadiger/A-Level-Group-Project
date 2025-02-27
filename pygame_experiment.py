@@ -15,11 +15,12 @@ BLUE = pygame.Color("#277DA1")
 BLACK = pygame.Color("#032834")
 WHITE = pygame.Color("#FFFFEF")
 
-clicked = False
+clicked = True
 
 def clicked_colour():
     print("there")
-    clicked = True            
+    clicked = True
+    return True        
 def Rainbow_Button():
     pygame.draw.rect(screen, ("#FF0000"), (10, 10, 7, 50))
     pygame.draw.rect(screen, ("#FFA500"), (17, 10, 7, 50))
@@ -43,7 +44,7 @@ def Colour_Palette():
     pygame.draw.rect(screen, BLUE, (460, 10, 50, 50))
     pygame.draw.rect(screen, BLACK, (510, 10, 50, 50))
     pygame.draw.rect(screen, WHITE, (560, 10, 50, 50))
-    pygame.display.update()
+
         
 
 pygame.init() # creates an object of the pygame class to make our window
@@ -77,20 +78,20 @@ while is_running:
             # checking if they press the x button on the window and closing if it happens
             is_running = False
 
-    screen.blit(background, (0, 0))
-    colours.draw(screen, 10, 10)
-    colours.is_clicked(clicked_colour)
-    Rainbow_Button()
-    if clicked == True:
-        print("heloooooo")
-        Colour_Palette()
+        screen.blit(background, (0, 0))
+        colours.draw(screen, 10, 10)
+        #clicked = colours.is_clicked(clicked_colour)
+        Rainbow_Button()
+        if clicked == True:
+            print("heloooooo")
+            Colour_Palette()
 
-    # drawing the label that we defined earlier
-    yashtext.draw(screen, 500, 500)
-    test.draw(screen, 300, 200)
-    reset_test.draw(screen, 300, 350)
-    test.is_clicked(foo)
-    reset_test.is_clicked(test.reset)
-    reset_test.reset()
+        # drawing the label that we defined earlier
+        yashtext.draw(screen, 500, 500)
+        test.draw(screen, 300, 200)
+        reset_test.draw(screen, 300, 350)
+        test.is_clicked(foo)
+        reset_test.is_clicked(test.reset)
+        reset_test.reset()
     pygame.display.update()
-    
+        
