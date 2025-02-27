@@ -1,5 +1,9 @@
 import pygame
+import os
 import ui_elements as ui
+
+
+
 # ui_elements refers to the python file in the same folder. this is basically our own homemade library of classes of ui elements that we have made. see that file for more info.
 #BTW I HAVE SHORTENED THE UI LIBRARY NAME TO JUST "UI" - WILL SPEED UP DEVELOPMENT
 RED = pygame.Color("#F94144")
@@ -75,7 +79,10 @@ while is_running:
                     HEIGHT = pygame.display.get_window_size()[1]
                     
                 else:
-                    screen = pygame.display.set_mode((800, 600))
+                    #Following two lines help reset window size to previous state also
+                    pygame.display.quit()
+                    pygame.display.init()
+                    screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
                     WIDTH = 800
                     HEIGHT = 600
                     
