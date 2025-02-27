@@ -2,7 +2,8 @@ import pygame
 import os
 import ui_elements as ui
 
-
+#Helps reset window settings to previous state
+os.environ['SDL_VIDEO_WINDOW_POS'] = f"{100}, {100}"
 
 # ui_elements refers to the python file in the same folder. this is basically our own homemade library of classes of ui elements that we have made. see that file for more info.
 #BTW I HAVE SHORTENED THE UI LIBRARY NAME TO JUST "UI" - WILL SPEED UP DEVELOPMENT
