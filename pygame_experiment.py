@@ -112,7 +112,6 @@ while is_running:
                     HEIGHT = 600
                      
        
-    screen.blit(background, (0, 0))
     colours.draw(screen, 10, 10)
     colours.is_clicked(clicked_colour)
     Rainbow_Button()
