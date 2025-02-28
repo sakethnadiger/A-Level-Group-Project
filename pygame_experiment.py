@@ -1,5 +1,10 @@
 import pygame
+import os
 import ui_elements as ui
+
+#Helps reset window settings to previous state
+os.environ['SDL_VIDEO_WINDOW_POS'] = f"{100}, {100}"
+
 # ui_elements refers to the python file in the same folder. this is basically our own homemade library of classes of ui elements that we have made. see that file for more info.
 #BTW I HAVE SHORTENED THE UI LIBRARY NAME TO JUST "UI" - WILL SPEED UP DEVELOPMENT
 RED = pygame.Color("#F94144")
@@ -53,20 +58,25 @@ def Colour_Palette():
 
 pygame.init() # creates an object of the pygame class to make our window
 
-pygame.display.set_caption('Quick Start') # sets the caption at the top of the window
-screen = pygame.display.set_mode((800, 600)) # sets the size of the window. theres some other ways to do fullscreen stc but we wont worry abt that now
+pygame.display.set_caption('Chatroom') # sets the caption at the top of the window
 
-background = pygame.Surface((800, 600)) # creating a background object o make a black background
-background.fill(WHITE)
+WIDTH = 800
+HEIGHT = 600
 
-# creating an instance of one of the ui elements i have made. a label is a thing that displays text
-yashtext = ui.Label(220, 50, BLUE, "yash bash cash", 40, 0)
+screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)# --> fullscreen has now been implemented
+
+#Is the background really necessary??? easily redundant when you can just use screen.fill() --> makes fullscreen a bit easier
+# background = pygame.Surface((WIDTH, HEIGHT)) # creating a background object to make a black background
+# background.fill(WHITE)
+
+
 
 #just testing the button with a dummy variable
 def foo():
     print("CLICKED")
-test = ui.Button(400, 100, 0, "test button", 100, (255, 255, 255))
-reset_test = ui.Button(300, 50, 0, "reset test button", 50, (255, 255, 255))
+test = ui.Button(500, 100, BLACK, "test button", 125, WHITE)
+reset_test = ui.Button(200, 40, BLACK, "reset button", 40, WHITE)
+logo = ui.Label(100, 60, WHITE, "designed by saketh, harvey, yash and luca.", 25, BLACK)
 
 colours = ui.Button(49, 50, 0, "text", 10 , (WHITE))
 reset_colours = ui.Button(49, 50, 0, "text", 10 , (WHITE))
@@ -76,6 +86,7 @@ COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange     Light Orange  
 # it is what allows us to constantly check for things like clicks and button presses each frame.
 
 is_running = True
+fullscreen = False
 
 while is_running:
     # this basically handles all the events that happen. key presses, mouse position, everything. the variable event contains all of these events. there are a lot you can have a look at a list online.
@@ -84,21 +95,49 @@ while is_running:
         if event.type == pygame.QUIT:
             # checking if they press the x button on the window and closing if it happens
             is_running = False
-
-        screen.blit(background, (0, 0))
-        colours.draw(screen, 10, 10)
-        colours.is_clicked(clicked_colour)
-        Rainbow_Button()
-        if clicked == True:
-            Colour_Palette()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_F11:
+                fullscreen = not fullscreen
+                if fullscreen:
+                    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+                    WIDTH = pygame.display.get_window_size()[0]
+                    HEIGHT = pygame.display.get_window_size()[1]
+                    
+                else:
+                    #Following two lines help reset window size to previous state also
+                    pygame.display.quit()
+                    pygame.display.init()
+                    screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
+                    WIDTH = 800
+                    HEIGHT = 600
+                     
+       
+    screen.blit(background, (0, 0))
+    colours.draw(screen, 10, 10)
+    colours.is_clicked(clicked_colour)
+    Rainbow_Button()
+    if clicked == True:
+        Colour_Palette()
             
 
         # drawing the label that we defined earlier
-        yashtext.draw(screen, 500, 500)
-        test.draw(screen, 300, 200)
-        reset_test.draw(screen, 300, 350)
-        test.is_clicked(foo)
-        reset_test.is_clicked(test.reset)
-        reset_test.reset()
-    pygame.display.update()
+     
+    
         
+
+    #screen.blit(background, (0, 0)) --> redundant, see line 43
+ 
+
+    # drawing the label that we defined earlier
+    logo.draw(screen, 0.55, -0.95)
+    test.draw(screen, 0, 0)
+    reset_test.draw(screen, 0, -0.4)
+    test.is_clicked(foo)
+    reset_test.is_clicked(test.reset)
+    reset_test.reset()
+    
+    
+    
+    pygame.display.update()
+    screen.fill(WHITE)
+
