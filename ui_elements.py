@@ -61,17 +61,51 @@ class Button(Label):
         
 
     # checks if the button is clicked. The button can only be clicked once and must be reset with the reset function. the function parameter takes the function that should be ran when clicked/.
-    def is_clicked(self, function):
+    def is_clicked(self, event, function):
         mousepos = pygame.mouse.get_pos()
-        # print(pygame.mouse.get_pos())
-        if self.hitbox.collidepoint(mousepos) and pygame.mouse.get_pressed()[0] == 1 and not self.pressed :
-            self.pressed = True
-            function()
+        if self.hitbox.collidepoint(mousepos) and not self.pressed:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                self.pressed = True
+                function()
     
     def reset(self):
         self.pressed = False
 
-class TextInput(Label):
-    def __init__(self, colour, text_colour, text=""):
-        super().__init__(colour, text_colour)
-        self.text = text
+class InputBox(Label):
+    def __init__(self, width, height, colour, default_text, text_size, text_colour):
+        super().__init__(width, height, colour, default_text, text_size, text_colour)
+        self.pressed = False
+        self.default = True
+        # saving the default text
+        self.default_text = self.text
+
+    def draw(self, surface, x, y):
+        new_x, new_y = convert_coords(x, y)
+        centred_x = new_x - self.width//2
+        centred_y = new_y - self.height//2
+        surface.blit(self.box, (centred_x, centred_y))
+        font = pygame.font.SysFont(None, self.text_size)
+        self.img = font.render(self.text, True, self.text_colour)
+        surface.blit(self.img, (centred_x + (self.width//2) - self.img.get_width()//2, centred_y + (self.height//2) - self.img.get_height()//2))
+        self.hitbox = self.box.get_rect()
+        self.hitbox.x, self.hitbox.y = centred_x, centred_y
+    
+    def update(self, event):
+        mousepos = pygame.mouse.get_pos()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.default:
+                self.text = ""
+                self.default = False
+            if self.hitbox.collidepoint(mousepos) and not self.pressed:
+                self.pressed = True
+            else:
+                if not self.default and self.text == "":
+                    self.default = True
+                    self.text = self.default_text
+                self.pressed = False
+        if event.type == pygame.KEYDOWN and self.pressed:
+            if event.key == pygame.K_BACKSPACE:
+                self.text = self.text[:-1] 
+            else: 
+                self.text += event.unicode
+        
