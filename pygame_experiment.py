@@ -32,14 +32,15 @@ def clicked_colour():
         clicked = False
     colours.reset()
 def Rainbow_Button():
-    pygame.draw.rect(screen, ("#FF0000"), (10, 10, 7, 50))
-    pygame.draw.rect(screen, ("#FFA500"), (17, 10, 7, 50))
-    pygame.draw.rect(screen, ("#FFFF00"), (24, 10, 7, 50))
-    pygame.draw.rect(screen, ("#008000"), (31, 10, 7, 50))
-    pygame.draw.rect(screen, ("#0000FF"), (38, 10, 7, 50))
-    pygame.draw.rect(screen, ("#4B0082"), (45, 10, 7, 50))
-    pygame.draw.rect(screen, ("#EE82EE"), (52, 10, 7, 50))
-    rainbow_text.draw(screen, 50, 69)
+    print(ui.convert_coords_back(3,((ui.convert_coords(3,0.9)[1])+70))[1])
+    red.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-21,3)[0], 0.9)
+    orange.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-14,3)[0], 0.9)
+    yellow.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-7,3)[0], 0.9)
+    green.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0]),3)[0], 0.9)
+    blue.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])+7,3)[0], 0.9)
+    indigo.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])+14,3)[0], 0.9)
+    violet.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])+21,3)[0], 0.9)  
+    rainbow_text.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0]) +22,3)[0], ui.convert_coords_back(3,((ui.convert_coords(3,0.9)[1])+30))[1])
 
 def Colour_Palette():
     pygame.draw.rect(screen, RED, (130, 10, 50, 50))
@@ -54,7 +55,7 @@ def Colour_Palette():
     pygame.draw.rect(screen, BLUE, (580, 10, 50, 50))
     pygame.draw.rect(screen, BLACK, (630, 10, 50, 50))
     pygame.draw.rect(screen, WHITE, (680, 10, 50, 50))
-    COLOUR_text.draw(screen, 431,69)
+    COLOUR_text.draw(screen, 0,0.7)
 
 pygame.init() # creates an object of the pygame class to make our window
 
@@ -78,10 +79,16 @@ test = ui.Button(500, 100, BLACK, "test button", 125, WHITE)
 reset_test = ui.Button(200, 40, BLACK, "reset button", 40, WHITE)
 logo = ui.Label(100, 60, WHITE, "designed by saketh, harvey, yash and luca.", 25, BLACK)
 
-colours = ui.Button(49, 50, 0, "text", 10 , (WHITE))
-reset_colours = ui.Button(49, 50, 0, "text", 10 , (WHITE))
+colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
 rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
 COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange     Light Orange       Peach             Yellow             Green          Turquoise           Cyan           Dark Grey           Blue                Black             White", 13, 0)
+red = ui.Label(8, 50, "#E81416", "", 14, 0)
+orange = ui.Label(8, 50, "#FFA500", "", 14, 0)
+yellow = ui.Label(8, 50, "#FAEB36", "", 14, 0)
+green = ui.Label(8, 50, "#79C314", "", 14, 0)
+blue = ui.Label(8, 50, "#487DE7", "", 14, 0)
+indigo = ui.Label(8, 50, "#4B369D", "", 14, 0)
+violet = ui.Label(8, 50, "#70369d", "", 14, 0)
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
 
@@ -112,7 +119,7 @@ while is_running:
                     HEIGHT = 600
                      
        
-    colours.draw(screen, 10, 10)
+    colours.draw(screen, -0.9, 0.9)
     colours.is_clicked(clicked_colour)
     Rainbow_Button()
     if clicked == True:

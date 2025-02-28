@@ -18,6 +18,14 @@ def convert_coords(input_x, input_y):
     true_y = int(screen_centre_y * (1 - input_y))
     return true_x, true_y
 
+def convert_coords_back(true_x, true_y):
+    width, height = pygame.display.get_window_size()
+    screen_centre_x = width // 2
+    screen_centre_y = height // 2
+    input_x = (true_x / int(screen_centre_x)) -1
+    input_y = (true_y / int(screen_centre_y) -1)*(-1)
+    return input_x, input_y
+
 
 class Label():
     def __init__(self, width, height, colour, text, text_size, text_colour):
