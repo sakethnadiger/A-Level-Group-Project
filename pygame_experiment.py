@@ -25,14 +25,12 @@ clicked = False
 
 def clicked_colour():
     global clicked
-    print("clicked")
     if clicked == False:
         clicked = True
     else:
         clicked = False
     colours.reset()
 def Rainbow_Button():
-    print(ui.convert_coords_back(3,((ui.convert_coords(3,0.9)[1])+70))[1])
     red.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-21,3)[0], 0.9)
     orange.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-14,3)[0], 0.9)
     yellow.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-7,3)[0], 0.9)
@@ -103,7 +101,6 @@ while is_running:
     reset_test.reset()
     
     colours.draw(screen, -0.9, 0.9)
-    colours.is_clicked(clicked_colour)
     Rainbow_Button()
     if clicked == True:
         Colour_Palette()
@@ -131,6 +128,7 @@ while is_running:
                     screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
                     WIDTH = 800
                     HEIGHT = 600
+        colours.is_clicked(event, clicked_colour)
         test.is_clicked(event, foo)
         reset_test.is_clicked(event, test.reset)
         textbox.update(event)
