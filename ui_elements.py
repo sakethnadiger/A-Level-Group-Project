@@ -12,20 +12,35 @@ import pygame
 #INPUT WILL BE A NUMBER x OR y, WITH |x| < 1 AND |y| < 1
 def convert_coords(input_x, input_y):
     width, height = pygame.display.get_window_size()
-    screen_centre_x = width // 2
-    screen_centre_y = height // 2
+    screen_centre_x = width / 2
+    screen_centre_y = height / 2
     true_x = int(screen_centre_x * (1 + input_x))
     true_y = int(screen_centre_y * (1 - input_y))
     return true_x, true_y
 
 def convert_coords_back(true_x, true_y):
     width, height = pygame.display.get_window_size()
-    screen_centre_x = width // 2
-    screen_centre_y = height // 2
+    screen_centre_x = width / 2
+    screen_centre_y = height / 2
     input_x = (true_x / int(screen_centre_x)) -1
     input_y = (true_y / int(screen_centre_y) -1)*(-1)
     return input_x, input_y
 
+def pin_x(x_Saketh_coord, x_pixel_offset):
+    width = pygame.display.get_window_size()[0]
+    screen_centre_x = width // 2
+    x_coord = int(screen_centre_x * (1 + x_Saketh_coord))
+    new_x_coord = x_coord + x_pixel_offset
+    new_x_Saketh_coord = (new_x_coord / int(screen_centre_x)) -1
+    return new_x_Saketh_coord
+
+def pin_y(y_Saketh_coord, y_pixel_offset):
+    height = pygame.display.get_window_size()[1]
+    screen_centre_y = height // 2
+    y_coord = int(screen_centre_y * (1 - y_Saketh_coord))
+    new_y_coord = y_coord + y_pixel_offset
+    new_y_Saketh_coord = (new_y_coord / int(screen_centre_y) -1)*(-1)
+    return new_y_Saketh_coord
 
 class Label():
     def __init__(self, width, height, colour, text, text_size, text_colour):

@@ -31,14 +31,14 @@ def clicked_colour():
         clicked = False
     colours.reset()
 def Rainbow_Button():
-    red.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-21,3)[0], 0.9)
-    orange.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-14,3)[0], 0.9)
-    yellow.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-7,3)[0], 0.9)
-    green.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0]),3)[0], 0.9)
-    blue.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])+7,3)[0], 0.9)
-    indigo.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])+14,3)[0], 0.9)
-    violet.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])+21,3)[0], 0.9)  
-    rainbow_text.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0]) +22,3)[0], ui.convert_coords_back(3,((ui.convert_coords(3,0.9)[1])+30))[1])
+    red.draw(screen, ui.pin_x(-0.9, -21), 0.9)
+    orange.draw(screen, ui.pin_x(-0.9, -14), 0.9)
+    yellow.draw(screen, ui.pin_x(-0.9, -7), 0.9)
+    green.draw(screen, ui.pin_x(-0.9, 0), 0.9)
+    blue.draw(screen, ui.pin_x(-0.9, 7), 0.9)
+    indigo.draw(screen, ui.pin_x(-0.9, 14), 0.9)
+    violet.draw(screen, ui.pin_x(-0.9, 21), 0.9)  
+    rainbow_text.draw(screen, ui.pin_x(-0.9,22),ui.pin_y(0.9,32))
 
 def Colour_Palette():
     pygame.draw.rect(screen, RED, (130, 10, 50, 50))
@@ -83,7 +83,7 @@ yellow = ui.Label(8, 50, "#FAEB36", "", 14, 0)
 green = ui.Label(8, 50, "#79C314", "", 14, 0)
 blue = ui.Label(8, 50, "#487DE7", "", 14, 0)
 indigo = ui.Label(8, 50, "#4B369D", "", 14, 0)
-violet = ui.Label(8, 50, "#70369d", "", 14, 0)
+violet = ui.Label(7, 50, "#70369d", "", 14, 0)
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
 
