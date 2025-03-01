@@ -25,7 +25,6 @@ clicked = False
 
 def clicked_colour():
     global clicked
-    print("clicked")
     if clicked == False:
         clicked = True
     else:
@@ -65,10 +64,6 @@ HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)# --> fullscreen has now been implemented
 
-#Is the background really necessary??? easily redundant when you can just use screen.fill() --> makes fullscreen a bit easier
-# background = pygame.Surface((WIDTH, HEIGHT)) # creating a background object to make a black background
-# background.fill(WHITE)
-
 
 
 #just testing the button with a dummy variable
@@ -77,6 +72,7 @@ def foo():
 test = ui.Button(500, 100, BLACK, "test button", 125, WHITE)
 reset_test = ui.Button(200, 40, BLACK, "reset button", 40, WHITE)
 logo = ui.Label(100, 60, WHITE, "designed by saketh, harvey, yash and luca.", 25, BLACK)
+textbox = ui.InputBox(300, 40, LIGHT_ORANGE, "Enter text here...", 40, WHITE)
 
 colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
 rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
@@ -95,6 +91,22 @@ is_running = True
 fullscreen = False
 
 while is_running:
+  
+    # DRAW OBJECTS FIRST
+    screen.fill(WHITE)
+    test.draw(screen, 0, 0)
+    reset_test.draw(screen, 0, -0.4)
+    textbox.draw(screen, 0, -0.7)
+    logo.draw(screen, 0.55, -0.95)
+    reset_test.reset()
+    
+    colours.draw(screen, -0.9, 0.9)
+    Rainbow_Button()
+    if clicked == True:
+        Colour_Palette()
+        
+    # EVENT CHECK AFTER DRAWING ALL OBJECTS
+
     # this basically handles all the events that happen. key presses, mouse position, everything. the variable event contains all of these events. there are a lot you can have a look at a list online.
     for event in pygame.event.get():
         # event.type helps us identify which event it is specifically to target something like a mouse press.
@@ -116,33 +128,14 @@ while is_running:
                     screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
                     WIDTH = 800
                     HEIGHT = 600
-                     
-       
-    colours.draw(screen, -0.9, 0.9)
-    colours.is_clicked(clicked_colour)
-    Rainbow_Button()
-    if clicked == True:
-        Colour_Palette()
-            
-
-        # drawing the label that we defined earlier
-     
+        colours.is_clicked(event, clicked_colour)
+        test.is_clicked(event, foo)
+        reset_test.is_clicked(event, test.reset)
+        textbox.update(event)
     
-        
-
-    #screen.blit(background, (0, 0)) --> redundant, see line 43
- 
-
-    # drawing the label that we defined earlier
-    logo.draw(screen, 0.55, -0.95)
-    test.draw(screen, 0, 0)
-    reset_test.draw(screen, 0, -0.4)
-    test.is_clicked(foo)
-    reset_test.is_clicked(test.reset)
-    reset_test.reset()
     
+    # DON'T DRAW ANYTHING HERE IM LOOKING AT YOU HARVEY
     
     
     pygame.display.update()
-    screen.fill(WHITE)
 
