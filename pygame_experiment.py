@@ -41,19 +41,19 @@ def Rainbow_Button():
     rainbow_text.draw(screen, ui.pin_x(-0.9,22),ui.pin_y(0.9,-32))
 
 def Colour_Palette():
-    pygame.draw.rect(screen, RED, (130, 10, 50, 50))
-    pygame.draw.rect(screen, ORANGE, (180, 10, 50, 50))
-    pygame.draw.rect(screen, LIGHT_ORANGE, (230, 10, 50, 50))
-    pygame.draw.rect(screen, PEACH, (280, 10, 50, 50))
-    pygame.draw.rect(screen, YELLOW, (330, 10, 50, 50))
-    pygame.draw.rect(screen, GREEN, (380, 10, 50, 50))
-    pygame.draw.rect(screen, TURQUOISE, (430, 10, 50, 50))
-    pygame.draw.rect(screen, CYAN, (480, 10, 50, 50))
-    pygame.draw.rect(screen, DARK_GREY, (530, 10, 50, 50))
-    pygame.draw.rect(screen, BLUE, (580, 10, 50, 50))
-    pygame.draw.rect(screen, BLACK, (630, 10, 50, 50))
-    pygame.draw.rect(screen, WHITE, (680, 10, 50, 50))
-    COLOUR_text.draw(screen, 0,0.7)
+    Red.draw(screen, ui.pin_x(-0.9,120),0.9)
+    Orange.draw(screen, ui.pin_x(-0.9,170),0.9)
+    Light_Orange.draw(screen, ui.pin_x(-0.9,220),0.9)
+    Peach.draw(screen, ui.pin_x(-0.9,270),0.9)
+    Yellow.draw(screen, ui.pin_x(-0.9,320),0.9)
+    Green.draw(screen, ui.pin_x(-0.9,370),0.9)
+    Turquoise.draw(screen, ui.pin_x(-0.9,420),0.9)
+    Cyan.draw(screen, ui.pin_x(-0.9,470),0.9)
+    Dark_Grey.draw(screen, ui.pin_x(-0.9,520),0.9)
+    Blue.draw(screen, ui.pin_x(-0.9,570),0.9)
+    Black.draw(screen, ui.pin_x(-0.9,620),0.9)
+    White.draw(screen, ui.pin_x(-0.9,670),0.9)
+    COLOUR_text.draw(screen, ui.pin_x(-0.9,396), ui.pin_y(0.9,32))
 
 pygame.init() # creates an object of the pygame class to make our window
 
@@ -76,7 +76,7 @@ textbox = ui.InputBox(300, 40, LIGHT_ORANGE, "Enter text here...", 40, WHITE)
 
 colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
 rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
-COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange     Light Orange       Peach             Yellow             Green          Turquoise           Cyan           Dark Grey           Blue                Black             White", 13, 0)
+COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan           Dark Grey           Blue                Black             White", 13, 0)
 red = ui.Label(8, 50, "#E81416", "", 14, 0)
 orange = ui.Label(8, 50, "#FFA500", "", 14, 0)
 yellow = ui.Label(8, 50, "#FAEB36", "", 14, 0)
@@ -84,6 +84,20 @@ green = ui.Label(8, 50, "#79C314", "", 14, 0)
 blue = ui.Label(8, 50, "#487DE7", "", 14, 0)
 indigo = ui.Label(8, 50, "#4B369D", "", 14, 0)
 violet = ui.Label(7, 50, "#70369d", "", 14, 0)
+
+Red = ui.Label(51, 50, RED, "", 0, 0)
+Orange = ui.Label(51, 50, ORANGE, "", 0, 0)
+Light_Orange = ui.Label(51, 50, LIGHT_ORANGE, "", 0, 0)
+Peach = ui.Label(51, 50, PEACH, "", 0, 0)
+Yellow = ui.Label(51, 50, YELLOW, "", 0, 0)
+Green = ui.Label(51, 50, GREEN, "", 0, 0)
+Turquoise = ui.Label(51, 50, TURQUOISE, "", 0, 0)
+Cyan = ui.Label(51, 50, CYAN, "", 0, 0)
+Dark_Grey = ui.Label(51, 50, DARK_GREY, "", 0, 0)
+Blue = ui.Label(51, 50, BLUE, "", 0, 0)
+Black = ui.Label(51, 50, BLACK, "", 0, 0)
+White = ui.Label(50, 50, WHITE, "", 0, 0)
+
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
 
