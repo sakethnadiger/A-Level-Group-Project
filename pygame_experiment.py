@@ -20,21 +20,42 @@ BLUE = pygame.Color("#277DA1")
 BLACK = pygame.Color("#032834")
 WHITE = pygame.Color("#FFFFEF")
 
+global clicked
+clicked = False
 
+def clicked_colour():
+    global clicked
+    print("clicked")
+    if clicked == False:
+        clicked = True
+    else:
+        clicked = False
+    colours.reset()
+def Rainbow_Button():
+    print(ui.convert_coords_back(3,((ui.convert_coords(3,0.9)[1])+70))[1])
+    red.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-21,3)[0], 0.9)
+    orange.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-14,3)[0], 0.9)
+    yellow.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])-7,3)[0], 0.9)
+    green.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0]),3)[0], 0.9)
+    blue.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])+7,3)[0], 0.9)
+    indigo.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])+14,3)[0], 0.9)
+    violet.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0])+21,3)[0], 0.9)  
+    rainbow_text.draw(screen, ui.convert_coords_back((ui.convert_coords(-0.9,3)[0]) +22,3)[0], ui.convert_coords_back(3,((ui.convert_coords(3,0.9)[1])+30))[1])
 
-def colour_palette():
-    pygame.draw.rect(screen, RED, (10, 10, 50, 50))
-    pygame.draw.rect(screen, ORANGE, (60, 10, 50, 50))
-    pygame.draw.rect(screen, LIGHT_ORANGE, (110, 10, 50, 50))
-    pygame.draw.rect(screen, PEACH, (160, 10, 50, 50))
-    pygame.draw.rect(screen, YELLOW, (210, 10, 50, 50))
-    pygame.draw.rect(screen, GREEN, (260, 10, 50, 50))
-    pygame.draw.rect(screen, TURQUOISE, (310, 10, 50, 50))
-    pygame.draw.rect(screen, CYAN, (360, 10, 50, 50))
-    pygame.draw.rect(screen, DARK_GREY, (410, 10, 50, 50))
-    pygame.draw.rect(screen, BLUE, (460, 10, 50, 50))
-    pygame.draw.rect(screen, BLACK, (510, 10, 50, 50))
-    pygame.draw.rect(screen, WHITE, (560, 10, 50, 50))
+def Colour_Palette():
+    pygame.draw.rect(screen, RED, (130, 10, 50, 50))
+    pygame.draw.rect(screen, ORANGE, (180, 10, 50, 50))
+    pygame.draw.rect(screen, LIGHT_ORANGE, (230, 10, 50, 50))
+    pygame.draw.rect(screen, PEACH, (280, 10, 50, 50))
+    pygame.draw.rect(screen, YELLOW, (330, 10, 50, 50))
+    pygame.draw.rect(screen, GREEN, (380, 10, 50, 50))
+    pygame.draw.rect(screen, TURQUOISE, (430, 10, 50, 50))
+    pygame.draw.rect(screen, CYAN, (480, 10, 50, 50))
+    pygame.draw.rect(screen, DARK_GREY, (530, 10, 50, 50))
+    pygame.draw.rect(screen, BLUE, (580, 10, 50, 50))
+    pygame.draw.rect(screen, BLACK, (630, 10, 50, 50))
+    pygame.draw.rect(screen, WHITE, (680, 10, 50, 50))
+    COLOUR_text.draw(screen, 0,0.7)
 
 pygame.init() # creates an object of the pygame class to make our window
 
@@ -55,6 +76,16 @@ reset_test = ui.Button(200, 40, BLACK, "reset button", 40, WHITE)
 logo = ui.Label(100, 60, WHITE, "designed by saketh, harvey, yash and luca.", 25, BLACK)
 textbox = ui.InputBox(300, 40, LIGHT_ORANGE, "Enter text here...", 40, WHITE)
 
+colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
+rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
+COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange     Light Orange       Peach             Yellow             Green          Turquoise           Cyan           Dark Grey           Blue                Black             White", 13, 0)
+red = ui.Label(8, 50, "#E81416", "", 14, 0)
+orange = ui.Label(8, 50, "#FFA500", "", 14, 0)
+yellow = ui.Label(8, 50, "#FAEB36", "", 14, 0)
+green = ui.Label(8, 50, "#79C314", "", 14, 0)
+blue = ui.Label(8, 50, "#487DE7", "", 14, 0)
+indigo = ui.Label(8, 50, "#4B369D", "", 14, 0)
+violet = ui.Label(8, 50, "#70369d", "", 14, 0)
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
 
@@ -62,17 +93,22 @@ is_running = True
 fullscreen = False
 
 while is_running:
-    
+  
+    # DRAW OBJECTS FIRST
+    screen.fill(WHITE)
     test.draw(screen, 0, 0)
     reset_test.draw(screen, 0, -0.4)
     textbox.draw(screen, 0, -0.7)
-    #screen.blit(background, (0, 0)) --> redundant, see line 43
-    colour_palette()
-
-    # drawing the label that we defined earlier
     logo.draw(screen, 0.55, -0.95)
-    # reset_test.is_clicked(test.reset)
     reset_test.reset()
+    
+    colours.draw(screen, -0.9, 0.9)
+    colours.is_clicked(clicked_colour)
+    Rainbow_Button()
+    if clicked == True:
+        Colour_Palette()
+        
+    # EVENT CHECK AFTER DRAWING ALL OBJECTS
 
     # this basically handles all the events that happen. key presses, mouse position, everything. the variable event contains all of these events. there are a lot you can have a look at a list online.
     for event in pygame.event.get():
@@ -100,6 +136,8 @@ while is_running:
         textbox.update(event)
     
     
+    # DON'T DRAW ANYTHING HERE IM LOOKING AT YOU HARVEY
+    
     
     pygame.display.update()
-    screen.fill(WHITE)
+
