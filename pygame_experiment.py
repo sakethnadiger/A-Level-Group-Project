@@ -53,7 +53,7 @@ def Colour_Palette():
     Blue.draw(screen, ui.pin_x(-0.9,570),0.9)
     Black.draw(screen, ui.pin_x(-0.9,620),0.9)
     White.draw(screen, ui.pin_x(-0.9,670),0.9)
-    COLOUR_text.draw(screen, ui.pin_x(-0.9,396), ui.pin_y(0.9,32))
+    COLOUR_text.draw(screen, ui.pin_x(-0.9,396), ui.pin_y(0.9,-32))
 
 pygame.init() # creates an object of the pygame class to make our window
 
@@ -77,11 +77,11 @@ textbox = ui.InputBox(300, 40, LIGHT_ORANGE, "Enter text here...", 40, WHITE)
 colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
 rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
 COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan           Dark Grey           Blue                Black             White", 13, 0)
-red = ui.Label(8, 50, "#E81416", "", 14, 0)
-orange = ui.Label(8, 50, "#FFA500", "", 14, 0)
-yellow = ui.Label(8, 50, "#FAEB36", "", 14, 0)
-green = ui.Label(8, 50, "#79C314", "", 14, 0)
-blue = ui.Label(8, 50, "#487DE7", "", 14, 0)
+red = ui.Label(8, 50, RED, "", 14, 0)
+orange = ui.Label(8, 50, ORANGE, "", 14, 0)
+yellow = ui.Label(8, 50, YELLOW, "", 14, 0)
+green = ui.Label(8, 50, GREEN, "", 14, 0)
+blue = ui.Label(8, 50, BLUE, "", 14, 0)
 indigo = ui.Label(8, 50, "#4B369D", "", 14, 0)
 violet = ui.Label(7, 50, "#70369d", "", 14, 0)
 
