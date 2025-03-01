@@ -38,7 +38,7 @@ def pin_y(y_Saketh_coord, y_pixel_offset):
     height = pygame.display.get_window_size()[1]
     screen_centre_y = height // 2
     y_coord = int(screen_centre_y * (1 - y_Saketh_coord))
-    new_y_coord = y_coord + y_pixel_offset
+    new_y_coord = y_coord - y_pixel_offset
     new_y_Saketh_coord = (new_y_coord / int(screen_centre_y) -1)*(-1)
     return new_y_Saketh_coord
 

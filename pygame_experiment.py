@@ -38,7 +38,7 @@ def Rainbow_Button():
     blue.draw(screen, ui.pin_x(-0.9, 7), 0.9)
     indigo.draw(screen, ui.pin_x(-0.9, 14), 0.9)
     violet.draw(screen, ui.pin_x(-0.9, 21), 0.9)  
-    rainbow_text.draw(screen, ui.pin_x(-0.9,22),ui.pin_y(0.9,32))
+    rainbow_text.draw(screen, ui.pin_x(-0.9,22),ui.pin_y(0.9,-32))
 
 def Colour_Palette():
     pygame.draw.rect(screen, RED, (130, 10, 50, 50))
@@ -71,7 +71,7 @@ def foo():
     print("CLICKED")
 test = ui.Button(500, 100, BLACK, "test button", 125, WHITE)
 reset_test = ui.Button(200, 40, BLACK, "reset button", 40, WHITE)
-logo = ui.Label(100, 60, WHITE, "designed by saketh, harvey, yash and luca.", 25, BLACK)
+logo = ui.Label(350, 25, WHITE, "designed by saketh, harvey, yash and luca.", 25, BLACK)
 textbox = ui.InputBox(300, 40, LIGHT_ORANGE, "Enter text here...", 40, WHITE)
 
 colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
@@ -97,7 +97,7 @@ while is_running:
     test.draw(screen, 0, 0)
     reset_test.draw(screen, 0, -0.4)
     textbox.draw(screen, 0, -0.7)
-    logo.draw(screen, 0.55, -0.95)
+    logo.draw(screen, ui.pin_x(1, -(logo.width//2 + 10)), ui.pin_y(-1, (logo.height//2 + 5)))
     reset_test.reset()
     
     colours.draw(screen, -0.9, 0.9)
