@@ -1,4 +1,5 @@
 import pygame
+from textwrap import wrap
 
 # this is effectively a homemade library where we create classes for ui_elements. this can be imported into the main program to be used.
 # the reason we have this in a separate file is to be better organised and promote reusability.
@@ -42,6 +43,33 @@ def pin_y(y_Saketh_coord, y_pixel_offset):
     new_y_Saketh_coord = (new_y_coord / int(screen_centre_y) -1)*(-1)
     return new_y_Saketh_coord
 
+#Separates a line of text into multiple lines with a set character limit which has not been fixed yet
+def multi_line_separator(text, char_limit):
+    if len(text) <= char_limit:
+        return [text]
+    words = text.split()
+    lines = []
+    result = ""
+
+    for iter, i in enumerate(words):
+        if len(result + " " + i) <= char_limit:
+            if iter == 0:
+                result += i
+            else:
+                result += " " + i
+        else:
+            remainder = char_limit - len(result)
+            result += remainder * " "
+            lines.append(result)
+            result = i
+            
+    remainder = char_limit - len(result)
+    result += remainder * " "
+    lines.append(result)
+    return lines
+
+
+
 class Label():
     def __init__(self, width, height, colour, text, text_size, text_colour):
         self.width = width
@@ -65,7 +93,35 @@ class Label():
         centred_y = new_y - self.height//2
         surface.blit(self.box, (centred_x, centred_y))
         surface.blit(self.img, (centred_x + (self.width//2) - self.img.get_width()//2, centred_y + (self.height//2) - self.img.get_height()//2))
+        
+class Bubble:
+    def __init__(self, colour, text, text_size, text_colour):
+        self.colour = colour
+        self.text = text
+        self.text_size = text_size
+        self.text_colour = text_colour
+        font = pygame.font.SysFont(None, text_size)
+        lines = multi_line_separator(self.text, 40)
+        self.line_objects = []
+        for line in lines:
+            self.line_objects.append(font.render(line, True, self.text_colour))
+        
+    def draw(self, surface, x, y):
+        height_multiplier = len(self.line_objects)#The length of the number of lines is the length of the line_objects list, which is the number the height is multiplied by
+        #add 5% of the width and height of the fonts on to the rectangle to act as padding
+        width = int(self.line_objects[0].get_width() * 1.05)
+        height = int(self.line_objects[0].get_height() * height_multiplier * 1.05)
+        new_x = convert_coords(x, y)[0]
+        new_y = convert_coords(x, y)[1]
+        centred_x = new_x - width//2
+        centred_y = new_y - height//2
+        bubble_rect = pygame.Rect(centred_x, centred_y, width, height)
+        pygame.draw.rect(surface, self.colour, bubble_rect, 0, min(width, height)//4)
 
+        for iter, object in enumerate(self.line_objects):
+            surface.blit(object, (centred_x + (width//2) - self.line_objects[0].get_width()//2, centred_y + ((height//(2*height_multiplier)) + (iter*self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2)))
+        #surface.blit(self.line_objects[1], (centred_x + (width//2) - self.line_objects[0].get_width()//2, centred_y + (height//(2 * 5)) + (self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2))
+        
 #Inherited buton from label.
 class Button(Label):
     def __init__(self, width, height, colour, text, text_size, text_colour):
@@ -131,4 +187,5 @@ class InputBox(Label):
                 self.text = self.text[:-1] 
             else: 
                 self.text += event.unicode
-        
+                
+                
