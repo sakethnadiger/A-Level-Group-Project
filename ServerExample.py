@@ -1,5 +1,7 @@
 # the server is like the bridge between the clients. It is the thing that takes the requests of the clients and sends them to each other.
 
+# in our actual project, this would be a separate machine from the users, that constantly has this script running, basically like how a minecraft server works or a cloud server in the random place in the ocean.
+
 # in the server we have to set up sockets to allow for connections to come into the server from the clients on a certain port.
 # a wifi basically has various ports for different purposes eg. port 80 is for HTTP requests. A lot of ports are unused, like 5555, which is the one we will use.
 
@@ -44,16 +46,18 @@ def threaded_client(conn):
             # recieve a message from the client. 2048 represents a 10-bit message. BINARY REFERENCE
             # if there are errors in this stage, they might be fixed by increasing the number 2048, eg. multiplying by 8.
             data = conn.recv(2048)
-            # decode the 10-bit message using utf-8
+            # decode the 10-bit message using utf-8 into a string for us to handle
             reply = data.decode("utf-8")
 
             if not data:
+                # if we try to get data from the client and nothing comes back, we're probably disconnected.
                 print("Disconnected")
                 break
             else:
+                # printing the message we recieved from the client
                 print("Received: ", reply)
                 print("Sending : ", reply)
-
+            # sending a message back to the clients. sendall refers to sending all of the message. in this example we send the exact same message back as a test.
             conn.sendall(str.encode(reply))
         except:
             print("error occured in threaded_client function, while sending and recieving messages to and from client.")
