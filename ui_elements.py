@@ -185,7 +185,11 @@ class InputBox(Label):
         if event.type == pygame.KEYDOWN and self.pressed:
             if event.key == pygame.K_BACKSPACE:
                 self.text = self.text[:-1] 
-            else: 
-                self.text += event.unicode
-                
-                
+            else:
+                if event.key != pygame.K_RETURN:
+                    self.text += event.unicode
+    
+    def get_text(self, event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                return self.text
