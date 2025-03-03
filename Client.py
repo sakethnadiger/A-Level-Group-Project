@@ -83,6 +83,12 @@
 
 # main()
 
+
+# in a server-client network, the client is the thing that processes and sends requests to other clients. This is basically like a "user" or "person"
+# on the network.
+
+# this includes the basic code that is the game.
+
 import pygame
 from Network import Network
 
