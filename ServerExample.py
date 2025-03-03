@@ -39,11 +39,12 @@ print("Waiting for a connection, Server Started")
 
 def threaded_client(conn):
     # STEP 7:   RECIEVE AND SEND INFORMATION TO AND FROM THE CONNECTED CLIENT
+    # send this message to the client to communicate that they are connected
     conn.send(str.encode("Connected"))
     reply = ""
     while True:
         try:
-            # recieve a message from the client. 2048 represents a 10-bit message. BINARY REFERENCE
+            # recieve a message from the client. 2048 represents a 10-bit message.
             # if there are errors in this stage, they might be fixed by increasing the number 2048, eg. multiplying by 8.
             data = conn.recv(2048)
             # decode the 10-bit message using utf-8 into a string for us to handle
