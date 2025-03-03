@@ -60,4 +60,5 @@ n = Network()
 print(n.send("Hello"))
 print(n.send("Working"))
 
-newmessage = (n.send(input("Send message: ")))
+while True:
+    newmessage = (n.send(input("Send message: ")))
