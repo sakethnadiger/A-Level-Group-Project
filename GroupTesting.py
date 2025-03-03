@@ -17,7 +17,7 @@ print("Waiting for a connection, Server Started")
 
 def threaded_client(conn):
     conn.send(str.encode("Connected"))
-    reply = "yash is smelly"
+    reply = ""
     while True:
         try:
             data = conn.recv(2048)
