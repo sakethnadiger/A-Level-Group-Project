@@ -9,8 +9,9 @@ import sys
 
 # STEP 1:   CREATING THE PORT
 # find the IP address of the server by taking the computer that the server runs on and open cmd > type "ipconfig" > copy the IPV4 Address. 
-server = "10.2.67.115" # the ip address goes here
+server = socket.gethostbyname(socket.gethostname()) # the ip address goes here
 port = 5555
+
 
 
 # STEP 2:   SETTING UP THE SOCKET
@@ -71,3 +72,4 @@ while True:
     # we can use threading to do both like miles morales in spider verse.
     # so then we start a new thread which runs our "threaded_client" function, the stuff we want to run when a client is connected, while also still running this while loop to search for any more connections.
     start_new_thread(threaded_client, (conn,))
+    
