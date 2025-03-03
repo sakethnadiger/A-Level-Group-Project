@@ -39,3 +39,6 @@ print(n.send("Working"))
 
 while True:
     newmessage = (n.send(input("Send message: ")))
+
+# we're probably going to import the network class from this python file just like we have for ui_elements, and run the connect and send function
+# in order to send messages in our main pygame loop.
