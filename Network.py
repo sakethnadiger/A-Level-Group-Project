@@ -3,6 +3,7 @@
 import socket
 
 
+
 class Network:
     def __init__(self):
         # ensures that the network connects to the right class
@@ -31,4 +32,5 @@ n = Network()
 print(n.send("Hello"))
 print(n.send("Working"))
 
-newmessage = (n.send(input("Send message: ")))
+while True:
+    newmessage = (n.send(input("Send message: ")))
