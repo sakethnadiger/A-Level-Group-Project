@@ -38,7 +38,6 @@ def threaded_client(conn):
     # STEP 7:   RECIEVE AND SEND INFORMATION TO AND FROM THE CONNECTED CLIENT
     conn.send(str.encode("Connected"))
     reply = ""
-    # while loop used to constantly be open to recieve messages
     while True:
         try:
             # recieve a message from the client. 2048 represents a 10-bit message. BINARY REFERENCE
