@@ -8,9 +8,15 @@ Server - effectively a "bridge" that takes client messages coming in and sends t
 constantly running the server code, using their ip address and wifi, that clients can connect to in order to communicate. Think of it like a 
 minecraft server, like hypixel. clients must connect to the server in order to interact.
 
+Port - The wifi that the server uses will have various ports for different purposes. eg. port 80 is always used for HTML requests etc.
+however lots of ports will be unused, like a random number like 5555, so we can use this port for our networking.
+
+Socket - the socket will allow the client to connect to the server to send messages. we bind the socket to the port we're using in server.py.
+
 Network - network is the broad term for the whole system that's happening, however Network.py is slightly different. (its a bit misleadingly named tbh)
 Network.py contains a class that helps the client to connect and send messages to the server. This basically means we dont have to have the messy
-networking code in our client code, instead we just import the class from network.py and use the methods in that, just like we do for ui_elements.
+networking code in our client code, instead we just import the class from network.py and use the methods in that, exactly the same system
+as we do for ui_elements.
 
 
 
