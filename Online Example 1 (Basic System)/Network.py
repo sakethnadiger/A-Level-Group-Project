@@ -1,5 +1,8 @@
 # the purpose of this script is to create a class that can connect the client to the server and take client messages to send to the server.
 # This is basically like the waiter at a restaurant.
+
+# we're  going to import the network class from this python file just like we have for ui_elements, and run the connect and send function
+# in order to send messages in our main pygame loop. In this example, we import it in client.py to use for the example game.
 import socket
 
 
@@ -11,9 +14,12 @@ class Network:
         self.server = socket.gethostbyname(socket.gethostname())
         self.port = 5555
         self.addr = (self.server, self.port)
-        self.id = self.connect()
-        # upon initialisation, attempt to connect to the server and print when connected.
-        print(self.id)
+        self.pos = self.connect()
+        # upon initialisation, attempt to connect to the server. we're calling it self.pos because in this example we have a game with moving squares
+        # and we want to return the position of each square at the start depending on if they're player 1 or 2.
+
+    def getPos(self):
+        return self.pos
 
     def connect(self):
         try:
@@ -39,6 +45,3 @@ print(n.send("Working"))
 
 while True:
     newmessage = (n.send(input("Send message: ")))
-
-# we're probably going to import the network class from this python file just like we have for ui_elements, and run the connect and send function
-# in order to send messages in our main pygame loop.
