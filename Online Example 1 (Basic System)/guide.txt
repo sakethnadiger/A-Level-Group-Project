@@ -1,0 +1,18 @@
+Here's an example of implementing a basic online system in python.
+
+Keywords:
+
+Client - a user or player. This will connect to the server and send and recieve messages to other clients using the server.
+
+Server - effectively a "bridge" that takes client messages coming in and sends them to other clients. This will be a separate machine that will be
+constantly running the server code, using their ip address and wifi, that clients can connect to in order to communicate. Think of it like a 
+minecraft server, like hypixel. clients must connect to the server in order to interact.
+
+Network - network is the broad term for the whole system that's happening, however Network.py is slightly different. (its a bit misleadingly named tbh)
+Network.py contains a class that helps the client to connect and send messages to the server. This basically means we dont have to have the messy
+networking code in our client code, instead we just import the class from network.py and use the methods in that, just like we do for ui_elements.
+
+
+
+Now that you know the fancy terms, have a look at the code. I would reccomend reading ServerExample.py first, then Network.py, then Client.py.
+In this example, client.py doesnt actually do anything, its just an example of what the final game would look like.
