@@ -26,4 +26,4 @@ In this example, client.py doesnt actually do anything, its just an example of w
 
 To try it out, first run ServerExample.py. this will open up the server for connections. Then go to network.py and instead of running normally, click the
 down arrow next to the run button and click "Run in dedicated terminal". This basically allows us to simulate a different machine that would connect to
-the server. Then you can switch between the two terminals to see what is happening on the server client side.
+the server. Then you can switch between the two terminals to see what is happening on the server and client side.
