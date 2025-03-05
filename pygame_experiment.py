@@ -80,6 +80,7 @@ reset_test = ui.Button(200, 40, BLACK, "reset button", 40, WHITE)
 logo = ui.Label(350, 25, WHITE, "designed by saketh, harvey, yash and luca.", 25, BLACK)
 textbox = ui.InputBox(300, 40, LIGHT_ORANGE, "Enter text here...", 40, WHITE)
 
+
 colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
 rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
 COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan           Dark Grey           Blue                Black             White", 13, 0)
@@ -115,7 +116,11 @@ multiLineTestBubble = ui.Bubble(GREEN, t, 20, WHITE)
 
 is_running = True
 fullscreen = False
+
 clock = pygame.time.Clock()
+
+messages = []
+
 while is_running:
   
     # DRAW OBJECTS FIRST
@@ -159,7 +164,15 @@ while is_running:
         colours.is_clicked(event, clicked_colour)
         test.is_clicked(event, foo)
         reset_test.is_clicked(event, test.reset)
+        #Check if the enter/return key is pressed. If it is the current value in the textbox is returned and set as a variable
+        inp = textbox.get_text(event)
+        #Currently the messages which are actually valid are being appended to a 'messages' list which is defined outside the while loop
+        #If we are using this system could put the if statement below into the class but if not then do not
+        #Also changed the updating of the text box so it does not display unicode of the return key
+        if inp is not None:
+            messages.append(inp)
         textbox.update(event)
+        
     
     
     # DON'T DRAW ANYTHING HERE IM LOOKING AT YOU HARVEY

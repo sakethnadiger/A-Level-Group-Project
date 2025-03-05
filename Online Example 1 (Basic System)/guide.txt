@@ -1,0 +1,29 @@
+Here's an example of implementing a basic online system in python.
+
+Keywords:
+
+Client - a user or player. This will connect to the server and send and recieve messages to other clients using the server.
+
+Server - effectively a "bridge" that takes client messages coming in and sends them to other clients. This will be a separate machine that will be
+constantly running the server code, using their ip address and wifi, that clients can connect to in order to communicate. Think of it like a 
+minecraft server, like hypixel. clients must connect to the server in order to interact.
+
+Port - The wifi that the server uses will have various ports for different purposes. eg. port 80 is always used for HTML requests etc.
+however lots of ports will be unused, like a random number like 5555, so we can use this port for our networking.
+
+Socket - the socket will allow the client to connect to the server to send messages. we bind the socket to the port we're using in server.py.
+
+Network - network is the broad term for the whole system that's happening, however Network.py is slightly different. (its a bit misleadingly named tbh)
+Network.py contains a class that helps the client to connect and send messages to the server. This basically means we dont have to have the messy
+networking code in our client code, instead we just import the class from network.py and use the methods in that, exactly the same system
+as we do for ui_elements.
+
+
+
+Now that you know the fancy terms, have a look at the code. I would reccomend reading ServerExample.py first, then Network.py, then Client.py.
+In this example, client.py doesnt actually do anything, its just an example of what the final game would look like.
+
+
+To try it out, first run ServerExample.py. this will open up the server for connections. Then go to network.py and instead of running normally, click the
+down arrow next to the run button and click "Run in dedicated terminal". This basically allows us to simulate a different machine that would connect to
+the server. Then you can switch between the two terminals to see what is happening on the server and client side.
