@@ -22,14 +22,18 @@ WHITE = pygame.Color("#FFFFEF")
 
 global clicked
 clicked = False
-
+global rect_x
+rect_x = 396
 def clicked_colour():
     global clicked
+    global rect_x
     if clicked == False:
         clicked = True
+        rect_x = 396
     else:
         clicked = False
     colours.reset()
+    return True
 def Rainbow_Button():
     red.draw(screen, ui.pin_x(-0.9, -21), 0.9)
     orange.draw(screen, ui.pin_x(-0.9, -14), 0.9)
@@ -41,6 +45,7 @@ def Rainbow_Button():
     rainbow_text.draw(screen, ui.pin_x(-0.9,22),ui.pin_y(0.9,-32))
 
 def Colour_Palette():
+    global rect_x
     Red.draw(screen, ui.pin_x(-0.9,120),0.9)
     Orange.draw(screen, ui.pin_x(-0.9,170),0.9)
     Light_Orange.draw(screen, ui.pin_x(-0.9,220),0.9)
@@ -54,7 +59,8 @@ def Colour_Palette():
     Black.draw(screen, ui.pin_x(-0.9,620),0.9)
     White.draw(screen, ui.pin_x(-0.9,670),0.9)
     COLOUR_text.draw(screen, ui.pin_x(-0.9,396), ui.pin_y(0.9,-32))
-
+    rect.draw(screen,ui.pin_x(-0.9,rect_x),0.9)
+    rect_x += 12
 pygame.init() # creates an object of the pygame class to make our window
 
 pygame.display.set_caption('Chatroom') # sets the caption at the top of the window
@@ -77,11 +83,11 @@ textbox = ui.InputBox(300, 40, LIGHT_ORANGE, "Enter text here...", 40, WHITE)
 colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
 rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
 COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan           Dark Grey           Blue                Black             White", 13, 0)
-red = ui.Label(8, 50, "#FF0000", "", 14, 0)
-orange = ui.Label(8, 50, "#FF7F00", "", 14, 0)
-yellow = ui.Label(8, 50, "#FFFF00", "", 14, 0)
-green = ui.Label(8, 50, "#00FF00", "", 14, 0)
-blue = ui.Label(8, 50, "#0000FF", "", 14, 0)
+red = ui.Label(8, 50, RED, "", 14, 0)
+orange = ui.Label(8, 50, ORANGE, "", 14, 0)
+yellow = ui.Label(8, 50, YELLOW, "", 14, 0)
+green = ui.Label(8, 50, GREEN, "", 14, 0)
+blue = ui.Label(8, 50, BLUE, "", 14, 0)
 indigo = ui.Label(8, 50, "#4B369D", "", 14, 0)
 violet = ui.Label(7, 50, "#70369d", "", 14, 0)
 
@@ -97,6 +103,7 @@ Dark_Grey = ui.Label(51, 50, DARK_GREY, "", 0, 0)
 Blue = ui.Label(51, 50, BLUE, "", 0, 0)
 Black = ui.Label(51, 50, BLACK, "", 0, 0)
 White = ui.Label(50, 50, WHITE, "", 0, 0)
+rect = ui.Label(600,50, WHITE, "", 0, 0)
 
 #test bubbles
 t = "This is a test sentence which is testing the bubble functionality. This sentence should be split across several lines."
@@ -108,7 +115,7 @@ multiLineTestBubble = ui.Bubble(GREEN, t, 20, WHITE)
 
 is_running = True
 fullscreen = False
-
+clock = pygame.time.Clock()
 while is_running:
   
     # DRAW OBJECTS FIRST
@@ -159,4 +166,5 @@ while is_running:
     
     
     pygame.display.update()
+    clock.tick(60)
 
