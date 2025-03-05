@@ -22,14 +22,18 @@ WHITE = pygame.Color("#FFFFEF")
 
 global clicked
 clicked = False
-
+global rect_x
+rect_x = 396
 def clicked_colour():
     global clicked
+    global rect_x
     if clicked == False:
         clicked = True
+        rect_x = 396
     else:
         clicked = False
     colours.reset()
+    return True
 def Rainbow_Button():
     red.draw(screen, ui.pin_x(-0.9, -21), 0.9)
     orange.draw(screen, ui.pin_x(-0.9, -14), 0.9)
@@ -41,6 +45,7 @@ def Rainbow_Button():
     rainbow_text.draw(screen, ui.pin_x(-0.9,22),ui.pin_y(0.9,-32))
 
 def Colour_Palette():
+    global rect_x
     Red.draw(screen, ui.pin_x(-0.9,120),0.9)
     Orange.draw(screen, ui.pin_x(-0.9,170),0.9)
     Light_Orange.draw(screen, ui.pin_x(-0.9,220),0.9)
@@ -54,7 +59,8 @@ def Colour_Palette():
     Black.draw(screen, ui.pin_x(-0.9,620),0.9)
     White.draw(screen, ui.pin_x(-0.9,670),0.9)
     COLOUR_text.draw(screen, ui.pin_x(-0.9,396), ui.pin_y(0.9,-32))
-
+    rect.draw(screen,ui.pin_x(-0.9,rect_x),0.9)
+    rect_x += 12
 pygame.init() # creates an object of the pygame class to make our window
 
 pygame.display.set_caption('Chatroom') # sets the caption at the top of the window
@@ -98,6 +104,7 @@ Dark_Grey = ui.Label(51, 50, DARK_GREY, "", 0, 0)
 Blue = ui.Label(51, 50, BLUE, "", 0, 0)
 Black = ui.Label(51, 50, BLACK, "", 0, 0)
 White = ui.Label(50, 50, WHITE, "", 0, 0)
+rect = ui.Label(600,50, WHITE, "", 0, 0)
 
 #test bubbles
 t = "This is a test sentence which is testing the bubble functionality. This sentence should be split across several lines."
@@ -109,6 +116,8 @@ multiLineTestBubble = ui.Bubble(GREEN, t, 20, WHITE)
 
 is_running = True
 fullscreen = False
+
+clock = pygame.time.Clock()
 
 messages = []
 
@@ -170,4 +179,5 @@ while is_running:
     
     
     pygame.display.update()
+    clock.tick(60)
 
