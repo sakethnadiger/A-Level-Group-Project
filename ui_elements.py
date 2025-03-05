@@ -100,6 +100,8 @@ class Bubble:
         self.text = text
         self.text_size = text_size
         self.text_colour = text_colour
+        self.width = 0
+        self.height = 0
         font = pygame.font.SysFont(None, text_size)
         lines = multi_line_separator(self.text, 40)
         self.line_objects = []
@@ -109,17 +111,17 @@ class Bubble:
     def draw(self, surface, x, y):
         height_multiplier = len(self.line_objects)#The length of the number of lines is the length of the line_objects list, which is the number the height is multiplied by
         #add 5% of the width and height of the fonts on to the rectangle to act as padding
-        width = int(self.line_objects[0].get_width() * 1.05)
-        height = int(self.line_objects[0].get_height() * height_multiplier * 1.05)
+        self.width = int(self.line_objects[0].get_width() * 1.05)
+        self.height = int(self.line_objects[0].get_height() * height_multiplier * 1.05)
         new_x = convert_coords(x, y)[0]
         new_y = convert_coords(x, y)[1]
-        centred_x = new_x - width//2
-        centred_y = new_y - height//2
-        bubble_rect = pygame.Rect(centred_x, centred_y, width, height)
-        pygame.draw.rect(surface, self.colour, bubble_rect, 0, min(width, height)//4)
+        centred_x = new_x - self.width//2
+        centred_y = new_y - self.height//2
+        bubble_rect = pygame.Rect(centred_x, centred_y, self.width, self.height)
+        pygame.draw.rect(surface, self.colour, bubble_rect, 0, min(self.width, self.height)//4)
 
         for iter, object in enumerate(self.line_objects):
-            surface.blit(object, (centred_x + (width//2) - self.line_objects[0].get_width()//2, centred_y + ((height//(2*height_multiplier)) + (iter*self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2)))
+            surface.blit(object, (centred_x + (self.width//2) - self.line_objects[0].get_width()//2, centred_y + ((self.height//(2*height_multiplier)) + (iter*self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2)))
         #surface.blit(self.line_objects[1], (centred_x + (width//2) - self.line_objects[0].get_width()//2, centred_y + (height//(2 * 5)) + (self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2))
         
 #Inherited buton from label.

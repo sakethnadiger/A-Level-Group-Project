@@ -109,6 +109,7 @@ multiLineTestBubble = ui.Bubble(GREEN, t, 20, WHITE)
 
 is_running = True
 fullscreen = False
+messageReal = False #Testing variable to allow for messages to appear
 
 messages = []
 
@@ -163,9 +164,15 @@ while is_running:
         if inp is not None:
             messages.append(inp)
         textbox.update(event)
+
+    if len(messages) > 0:
+        messageBubble = ui.Bubble(BLUE, messages[0], 40, WHITE)
+        messageReal = True
+        messages.pop(0)
         
-    
-    
+    if messageReal == True:
+        messageBubble.draw(screen, ui.pin_x(-1, messageBubble.width // 2 + 20), ui.pin_y(-1, messageBubble.height // 2 + 20))
+
     # DON'T DRAW ANYTHING HERE IM LOOKING AT YOU HARVEY
     
     
