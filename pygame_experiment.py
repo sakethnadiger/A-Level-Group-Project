@@ -71,7 +71,6 @@ HEIGHT = 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)# --> fullscreen has now been implemented
 
 
-
 #just testing the button with a dummy variable
 def foo():
     print("CLICKED")
@@ -181,7 +180,7 @@ while is_running:
         
     if messageReal == True:
         messageBubble.draw(screen, ui.pin_x(-1, messageBubble.width // 2 + 20), ui.pin_y(-1, messageBubble.height // 2 + 20))
-
+    
     # DON'T DRAW ANYTHING HERE IM LOOKING AT YOU HARVEY
     
     
