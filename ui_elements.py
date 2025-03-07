@@ -111,8 +111,8 @@ class Bubble:
     def draw(self, surface, x, y):
         height_multiplier = len(self.line_objects)#The length of the number of lines is the length of the line_objects list, which is the number the height is multiplied by
         #add 5% of the width and height of the fonts on to the rectangle to act as padding
-        self.width = int(self.line_objects[0].get_width() * 1.05)
-        self.height = int(self.line_objects[0].get_height() * height_multiplier * 1.05)
+        self.width = int(self.line_objects[0].get_width() * 1.2)
+        self.height = int(self.line_objects[0].get_height() * height_multiplier * 1.2)
         new_x = convert_coords(x, y)[0]
         new_y = convert_coords(x, y)[1]
         centred_x = new_x - self.width//2
@@ -147,7 +147,7 @@ class Button(Label):
         if self.hitbox.collidepoint(mousepos) and not self.pressed:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 self.pressed = True
-                function()
+                return function()
     
     def reset(self):
         self.pressed = False
