@@ -1,63 +1,60 @@
-# THIS SCRIPT ALWAYS HAS TO BE RUNNING FROM THE MACHINE WHERE THE IP ADDRESS IS FROM.
+# check the online example 1 folder for an explanation of this kind of code
 
 import socket
 from _thread import *
 import sys
 
-server = "127.0.0.1"
+# find the IP address of the server by taking the computer that the server runs on and open cmd > type "ipconfig" > copy the IPV4 Address.
+# server = "10.2.65.105"  # the ip address goes here
+server = socket.gethostbyname(socket.gethostname())
 port = 5555
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # AF_INET is the type of IP I'm using. SOCK_STREAM reprisents how the server stream comes in.
+
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
-    s.bind((server, port)) # Attempts to bind the server to the IP.
+    s.bind((server, port))
 except socket.error as e:
+    print("error occurred when binding the port to the socket")
     str(e)
 
-s.listen(2) # Opens up the port so you can connect to it. Parameter is how many connections, leaving empty allows infinite.
-print("Waiting for a connection, Server Started.")
 
-def read_pos(str): # Reads the position sent as a string, splits it into two and changes them into a tupple.
-    str = str.split(",")
-    return int(str[0]), int(str[1])
+s.listen()
+print("Waiting for a connection, Server Started")
 
-def make_pos(tup):
-    return str(tup[0]) + "," + str(tup[1])
+currentmsg = [".","."]
 
-
-pos = [(0,0),(100,100)] # Holds positions of players.
-
-def threaded_client(conn, player): #Stands for connection. A thread starts a new process, it runs in the background as process 2 while process 1 is still running so the program doesn't have to wait. Means you can accept multiple connections at the same time.
-    conn.send(str.encode(make_pos(pos[player]))) # Converts position into string, sends it to player and convert it to a position so it can be applied.
+def threaded_client(conn, user):
+    conn.send(str.encode("Connected"))
     reply = ""
     while True:
-        try:
-            data = read_pos(conn.recv(2048).decode()) # Trying to recieve data from the connection. Parameter is in bits.
-            pos[player] = data 
-
+        # try:
+            data = conn.recv(2048)
+            currentmsg[user] = data.decode("utf-8")
             if not data:
-                print("Disconnected.") # If we try recieve data from client and get nothing, we break to avoid infinite loops.
+                print("Disconnected")
                 break
             else:
-                if player == 1: # If we're player 1, we send player 0's position.
-                    reply = pos[0]
-                else: # If we're player 0, we send player 1's position.
-                    reply = pos[1] 
+                print("Received: ", currentmsg[user])
+                if user == 0:
+                    reply = currentmsg[1]
+                    print("Sending : ", reply)
+                else:
+                    reply = currentmsg[0]
+                    print("Sending : ", reply)
+            print(currentmsg)
+            conn.sendall(str.encode(reply))
+        # except:
+        #     print("error occured in threaded_client function, while sending and recieving messages to and from client.")
+        #     break
 
-                print("Recieved ", data)
-                print("Sending: ", reply)
-            
-            conn.sendall(str.encode(make_pos(reply))) # Sends information over the server as a bytes object. Encoded.
-        except:
-            break
-
-    print("Lost connection.")
+    print("Lost connection")
     conn.close()
 
-currentPlayer = 0
+userID = 0
 while True:
-    conn, addr = s.accept() # Accepts any incoming connection, stores connection and address in conn and addr
-    print("Connected to", addr)
-
-    start_new_thread(threaded_client, (conn, currentPlayer))
-    currentPlayer += 1
+    conn, addr = s.accept()
+    print("Connected to:", addr)
+    start_new_thread(threaded_client, (conn, userID))
+    userID += 1
