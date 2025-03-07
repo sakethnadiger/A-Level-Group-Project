@@ -13,7 +13,7 @@ YELLOW = pygame.Color("#F9C74F")
 GREEN = pygame.Color("#90BE6D")
 TURQUOISE = pygame.Color("#43AA8B")
 CYAN = pygame.Color("#4D908E")
-DARK_GREY = pygame.Color("#577590")
+DARK_GREY = pygame.Color("#5A5A5A")
 BLUE = pygame.Color("#277DA1")
 BLACK = pygame.Color("#032834")
 WHITE = pygame.Color("#FFFFEF")
@@ -28,8 +28,8 @@ HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 
-footer = ui.Label(WIDTH, 2*(HEIGHT//8), DARK_GREY, "", 0, 0)
-message_input = ui.InputBox(WIDTH*0.75, 0.75*(HEIGHT//8), WHITE, "", 40, BLACK)
+footer = ui.Label(WIDTH, (HEIGHT//4), DARK_GREY, "", 0, 0)
+message_input = ui.InputBox(WIDTH*0.75, 0.5*(HEIGHT//8), BLACK, "", 40, PEACH)
 
 is_running = True
 fullscreen = False
@@ -39,10 +39,11 @@ messages = []
 
 while is_running:
     
+    
     #DRAW OBJECTS HERE
     screen.fill(BLACK)
     footer.draw(screen, 0, -1)
-    message_input.draw(screen, 0, 0)
+    message_input.draw(screen, 0, ui.pin_y(-1, (HEIGHT//16)))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -62,7 +63,7 @@ while is_running:
                     WIDTH = 800
                     HEIGHT = 600
     
-    message_input.update(event)
+        message_input.update(event)
     
     pygame.display.update()
 
