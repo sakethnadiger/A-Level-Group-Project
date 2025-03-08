@@ -28,8 +28,8 @@ HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 
-footer = ui.Label(WIDTH, (HEIGHT//4), BLACK, "", 0, 0)
-message_input = ui.InputBox(WIDTH*0.75, 0.5*(HEIGHT//8), PEACH, "", 40, WHITE)
+footer = ui.Label(WIDTH, (HEIGHT//4), DARK_GREY, "", 0, 0)
+message_input = ui.InputBox(WIDTH*0.75, 0.5*(HEIGHT//8), BLACK, "", 40, PEACH)
 
 is_running = True
 fullscreen = False

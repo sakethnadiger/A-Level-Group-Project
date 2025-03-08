@@ -173,7 +173,7 @@ while is_running:
             replyBubble.draw(screen, ui.pin_x(0, -50), ui.pin_y(0, msg_y))
         msg_y -= 45
 
-    msg_to_send = "."
+    msg_to_send = "." # setting the message as blank as default for when there are no new messages each frame.
         
     # EVENT CHECK AFTER DRAWING ALL OBJECTS
 
