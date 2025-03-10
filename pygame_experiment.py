@@ -227,5 +227,4 @@ while is_running:
     
     
     pygame.display.update()
-    clock.tick(60)
 
