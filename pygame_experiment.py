@@ -73,7 +73,7 @@ connect_button = ui.Button(400, 60, BLACK, "Connect to server", 60, WHITE)
 
 colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
 rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
-COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan           Blue                Dark Grey           Black             White", 13, 0)
+COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan                Blue           Dark Grey           Black             White", 13, 0)
 red = ui.Label(8, 50, RED, "", 14, 0)
 orange = ui.Label(8, 50, ORANGE, "", 14, 0)
 yellow = ui.Label(8, 50, YELLOW, "", 14, 0)
