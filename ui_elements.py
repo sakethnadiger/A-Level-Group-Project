@@ -118,7 +118,7 @@ class Bubble:
         centred_x = new_x - self.width//2
         centred_y = new_y - self.height//2
         bubble_rect = pygame.Rect(centred_x, centred_y, self.width, self.height)
-        pygame.draw.rect(surface, self.colour, bubble_rect, 0, min(self.width, self.height)//4)
+        pygame.draw.rect(surface, self.colour, bubble_rect, 0, min(self.width, self.height)//2)
 
         for iter, object in enumerate(self.line_objects):
             surface.blit(object, (centred_x + (self.width//2) - self.line_objects[0].get_width()//2, centred_y + ((self.height//(2*height_multiplier)) + (iter*self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2)))

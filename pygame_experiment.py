@@ -97,9 +97,9 @@ White = ui.Label(50, 50, WHITE, "", 0, 0)
 rect = ui.Label(600,50, WHITE, "", 0, 0)
 
 #test bubbles
-# t = "This is a test sentence which is testing the bubble functionality. This sentence should be split across several lines."
-# testBubble = ui.Bubble(GREEN, "saketh", 50, WHITE)
-# multiLineTestBubble = ui.Bubble(GREEN, t, 20, WHITE)
+t = "This is a test sentence which is testing the bubble functionality. This sentence should be split across several lines."
+testBubble = ui.Bubble(GREEN, "saketh", 50, WHITE)
+multiLineTestBubble = ui.Bubble(GREEN, t, 20, WHITE)
 
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
