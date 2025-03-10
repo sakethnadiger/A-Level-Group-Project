@@ -41,8 +41,8 @@ def Colour_Palette(pos):
     Green.draw(screen, ui.pin_x(-0.9,370),0.9)
     Turquoise.draw(screen, ui.pin_x(-0.9,420),0.9)
     Cyan.draw(screen, ui.pin_x(-0.9,470),0.9)
-    Dark_Grey.draw(screen, ui.pin_x(-0.9,520),0.9)
-    Blue.draw(screen, ui.pin_x(-0.9,570),0.9)
+    Blue.draw(screen, ui.pin_x(-0.9,520),0.9)
+    Dark_Grey.draw(screen, ui.pin_x(-0.9,570),0.9)
     Black.draw(screen, ui.pin_x(-0.9,620),0.9)
     White.draw(screen, ui.pin_x(-0.9,670),0.9)
     COLOUR_text.draw(screen, ui.pin_x(-0.9,396), ui.pin_y(0.9,-32))
@@ -73,7 +73,7 @@ connect_button = ui.Button(400, 60, BLACK, "Connect to server", 60, WHITE)
 
 colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
 rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
-COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan           Dark Grey           Blue                Black             White", 13, 0)
+COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan                Blue           Dark Grey           Black             White", 13, 0)
 red = ui.Label(8, 50, RED, "", 14, 0)
 orange = ui.Label(8, 50, ORANGE, "", 14, 0)
 yellow = ui.Label(8, 50, YELLOW, "", 14, 0)
@@ -227,5 +227,4 @@ while is_running:
     
     
     pygame.display.update()
-    clock.tick(60)
 
