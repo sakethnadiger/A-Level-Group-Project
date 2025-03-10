@@ -28,12 +28,13 @@ HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 
-footer = ui.Label(WIDTH, (HEIGHT//4), BLACK, "", 0, 0)
-message_input = ui.InputBox(WIDTH*0.75, 0.5*(HEIGHT//8), WHITE, "", 40, DARK_GREY)
+footer = ui.Label(WIDTH, (HEIGHT//4), DARK_GREY, "", 0, 0)
+message_input = ui.InputBox(WIDTH*0.75, 0.5*(HEIGHT//8), BLACK, "", 40, PEACH)
 
 is_running = True
 fullscreen = False
 
+clock = pygame.time.Clock()
 
 messages = []
 
@@ -62,8 +63,11 @@ while is_running:
                     screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
                     WIDTH = 800
                     HEIGHT = 600
-    
+        message = message_input.get_text(event)
+        if message is not None:
+            messages.append(message)
+            msg_to_send = message
         message_input.update(event)
     
     pygame.display.update()
-
+    clock.tick(60)
