@@ -161,13 +161,18 @@ class InputBox(Label):
         self.default_text = self.text
 
     def draw(self, surface, x, y):
-        new_x, new_y = convert_coords(x, y)
-        centred_x = new_x - self.width//2
-        centred_y = new_y - self.height//2
-        surface.blit(self.box, (centred_x, centred_y))
         font = pygame.font.SysFont(None, self.text_size)
         self.img = font.render(self.text, True, self.text_colour)
-        surface.blit(self.img, (centred_x + (self.width//2) - self.img.get_width()//2, centred_y + (self.height//2) - self.img.get_height()//2))
+        if self.img.get_width() > self.width - 20:
+            self.box = pygame.Surface((self.img.get_width() + 20, self.height))
+        else:
+            self.box = pygame.Surface((self.width, self.height))
+        new_x, new_y = convert_coords(x, y)
+        centred_x = new_x - self.box.get_width()//2
+        centred_y = new_y - self.height//2
+        self.box.fill(pygame.Color(self.colour))
+        surface.blit(self.box, (centred_x, centred_y))
+        surface.blit(self.img, (centred_x + (self.box.get_width()//2) - self.img.get_width()//2, centred_y + (self.height//2) - self.img.get_height()//2))
         self.hitbox = self.box.get_rect()
         self.hitbox.x, self.hitbox.y = centred_x, centred_y
     

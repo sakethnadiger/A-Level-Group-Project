@@ -28,8 +28,8 @@ HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 
-footer = ui.Label(WIDTH, (HEIGHT//4), DARK_GREY, "", 0, 0)
-message_input = ui.InputBox(WIDTH*0.75, 0.5*(HEIGHT//8), BLACK, "", 40, PEACH)
+footer = ui.Label(WIDTH*3, (HEIGHT//4),  BLACK, "", 0, 0)
+message_input = ui.InputBox(WIDTH*0.75, 0.5*(HEIGHT//8), WHITE, "", 40, BLUE)
 
 is_running = True
 fullscreen = False
@@ -40,10 +40,10 @@ messages = []
 
 while is_running:
     
-    
     #DRAW OBJECTS HERE
     screen.fill(WHITE)
     footer.draw(screen, 0, -1)
+    message_input.width = screen.get_width()*0.5
     message_input.draw(screen, 0, ui.pin_y(-1, (HEIGHT//16)))
 
     for event in pygame.event.get():
