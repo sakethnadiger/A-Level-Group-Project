@@ -5,8 +5,8 @@ from _thread import *
 import sys
 
 # find the IP address of the server by taking the computer that the server runs on and open cmd > type "ipconfig" > copy the IPV4 Address.
-server = "10.2.64.51"  # the ip address goes here
-#server = socket.gethostbyname(socket.gethostname())
+#server = "10.2.64.51"  # the ip address goes here
+server = socket.gethostbyname(socket.gethostname())
 port = 5555
 
 
