@@ -7,8 +7,19 @@ from textwrap import wrap
 
 # label has attributes colour, text and text_colour
 
-
-
+#added all the colours into here to use for the main files
+RED = pygame.Color("#F94144")
+ORANGE = pygame.Color("#F3722C")
+LIGHT_ORANGE = pygame.Color("#F8961E")
+PEACH = pygame.Color("#F9844A")
+YELLOW = pygame.Color("#F9C74F")
+GREEN = pygame.Color("#90BE6D")
+TURQUOISE = pygame.Color("#43AA8B")
+CYAN = pygame.Color("#4D908E")
+DARK_GREY = pygame.Color("#5A5A5A")
+BLUE = pygame.Color("#277DA1")
+BLACK = pygame.Color("#032834")
+WHITE = pygame.Color("#FFFFEF")
 #NOW USING A COORDINATE SYSTEM WITH 0,0 AT THE CENTRE OF SCREEN AND INPUT COORDINATES RELATIVE TO CENTRE. E.G. 0.5 IS HALFWAY UP TO THE TOP
 #INPUT WILL BE A NUMBER x OR y, WITH |x| < 1 AND |y| < 1
 def convert_coords(input_x, input_y):
@@ -43,6 +54,20 @@ def pin_y(y_Saketh_coord, y_pixel_offset):
     new_y_Saketh_coord = (new_y_coord / int(screen_centre_y) -1)*(-1)
     return new_y_Saketh_coord
 
+def animate_x(start, end, pos, speed,):
+    #turns the given coordinate into its true coordinate value
+    start = int(pygame.display.get_window_size()[0] //2 * (1 + start))
+    end = int(pygame.display.get_window_size()[0] //2 * (1 + end))
+    #gets the true value of pos when it is pinned to -0.9
+    pinned_pos = int(pygame.display.get_window_size()[0] //2 * (1 + pin_x(-0.9, pos)))
+    #makes the rectangle speed up until half way and then slowes it down until back to speed = 0.1
+    if pinned_pos <= (start + (end - start)/2):
+        pos += speed
+        speed += 0.2
+    elif speed > 0.2:
+        pos += speed
+        speed -= 0.2
+    return pos, speed
 #Separates a line of text into multiple lines with a set character limit which has not been fixed yet
 def multi_line_separator(text, char_limit):
     if len(text) <= char_limit:
@@ -111,8 +136,8 @@ class Bubble:
     def draw(self, surface, x, y):
         height_multiplier = len(self.line_objects)#The length of the number of lines is the length of the line_objects list, which is the number the height is multiplied by
         #add 5% of the width and height of the fonts on to the rectangle to act as padding
-        self.width = int(self.line_objects[0].get_width() * 1.2)
-        self.height = int(self.line_objects[0].get_height() * height_multiplier * 1.2)
+        self.width = int(self.line_objects[0].get_width() * 1.05)
+        self.height = int(self.line_objects[0].get_height() * height_multiplier * 1.05)
         new_x = convert_coords(x, y)[0]
         new_y = convert_coords(x, y)[1]
         centred_x = new_x - self.width//2
@@ -122,7 +147,7 @@ class Bubble:
 
         for iter, object in enumerate(self.line_objects):
             surface.blit(object, (centred_x + (self.width//2) - self.line_objects[0].get_width()//2, centred_y + ((self.height//(2*height_multiplier)) + (iter*self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2)))
-        #surface.blit(self.line_objects[1], (centred_x + (width//2) - self.line_objects[0].get_width()//2, centred_y + (height//(2 * 5)) + (self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2))
+        
         
 #Inherited buton from label.
 class Button(Label):
@@ -200,3 +225,8 @@ class InputBox(Label):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 return self.text
+            
+
+# draw(animate_x(any_var, var1, var2)[0], animate_x(any_var, var1, var2)[1])
+
+###     return var1, var2
