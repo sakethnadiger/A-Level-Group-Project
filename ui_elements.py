@@ -111,8 +111,8 @@ class Bubble:
     def draw(self, surface, x, y):
         height_multiplier = len(self.line_objects)#The length of the number of lines is the length of the line_objects list, which is the number the height is multiplied by
         #add 5% of the width and height of the fonts on to the rectangle to act as padding
-        self.width = int(self.line_objects[0].get_width() * 1.2)
-        self.height = int(self.line_objects[0].get_height() * height_multiplier * 1.2)
+        self.width = int(self.line_objects[0].get_width() * 1.05)
+        self.height = int(self.line_objects[0].get_height() * height_multiplier * 1.05)
         new_x = convert_coords(x, y)[0]
         new_y = convert_coords(x, y)[1]
         centred_x = new_x - self.width//2
@@ -122,7 +122,7 @@ class Bubble:
 
         for iter, object in enumerate(self.line_objects):
             surface.blit(object, (centred_x + (self.width//2) - self.line_objects[0].get_width()//2, centred_y + ((self.height//(2*height_multiplier)) + (iter*self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2)))
-        #surface.blit(self.line_objects[1], (centred_x + (width//2) - self.line_objects[0].get_width()//2, centred_y + (height//(2 * 5)) + (self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2))
+        
         
 #Inherited buton from label.
 class Button(Label):

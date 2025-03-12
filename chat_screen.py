@@ -78,7 +78,9 @@ while is_running:
         msg, id = msg.split("¬")
         if id == "0":
             replyBubble = ui.Bubble(TURQUOISE, msg, 40, WHITE)
-            replyBubble.draw(screen, ui.pin_x(1, -(replyBubble.width//2 + 100)), ui.pin_y(0, msg_y))
+            # Why does this work when the padding  ------------------------v is 100 and replyBubble.width, even though they are identical??
+            replyBubble.draw(screen, ui.pin_x(1, 0), ui.pin_y(0, msg_y))
+            print(replyBubble.width)
         else:
             replyBubble = ui.Bubble(GREEN, msg, 40, WHITE)
             replyBubble.draw(screen, ui.pin_x(0, -50), ui.pin_y(0, msg_y))
