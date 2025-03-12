@@ -114,7 +114,6 @@ connected = False
 
 clock = pygame.time.Clock()
 
-messages = []
 chat_history = []
 while is_running:
   
@@ -205,23 +204,11 @@ while is_running:
         if connect_button.is_clicked(event, connecting):
             connected = True
             connect_button.reset()
-        #Check if the enter/return key is pressed. If it is the current value in the textbox is returned and set as a variable
         inp = textbox.get_text(event)
-        #Currently the messages which are actually valid are being appended to a 'messages' list which is defined outside the while loop
-        #If we are using this system could put the if statement below into the class but if not then do not
-        #Also changed the updating of the text box so it does not display unicode of the return key
         if inp is not None:
-            messages.append(inp)
             msg_to_send = inp
         textbox.update(event)
 
-    # if len(messages) > 0:
-    #     messageBubble = ui.Bubble(BLUE, messages[0], 40, WHITE)
-    #     messageReal = True
-    #     messages.pop(0)
-        
-    # if messageReal == True:
-    #     messageBubble.draw(screen, ui.pin_x(-1, messageBubble.width // 2 + 20), ui.pin_y(-1, messageBubble.height // 2 + 20))
 
     # DON'T DRAW ANYTHING HERE IM LOOKING AT YOU HARVEY
     
