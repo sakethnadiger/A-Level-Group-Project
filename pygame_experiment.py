@@ -199,14 +199,6 @@ while is_running:
             msg_to_send = inp
         textbox.update(event)
 
-    # if len(messages) > 0:
-    #     messageBubble = ui.Bubble(ui.BLUE, messages[0], 40, ui.WHITE)
-    #     messageReal = True
-    #     messages.pop(0)
-        
-    # if messageReal == True:
-    #     messageBubble.draw(screen, ui.pin_x(-1, messageBubble.width // 2 + 20), ui.pin_y(-1, messageBubble.height // 2 + 20))
-
     # DON'T DRAW ANYTHING HERE IM LOOKING AT YOU HARVEY
     
     clock.tick(60)
