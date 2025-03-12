@@ -200,3 +200,8 @@ class InputBox(Label):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 return self.text
+            
+
+# draw(animate_x(any_var, var1, var2)[0], animate_x(any_var, var1, var2)[1])
+
+###     return var1, var2

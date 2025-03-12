@@ -16,7 +16,7 @@ YELLOW = pygame.Color("#F9C74F")
 GREEN = pygame.Color("#90BE6D")
 TURQUOISE = pygame.Color("#43AA8B")
 CYAN = pygame.Color("#4D908E")
-DARK_GREY = pygame.Color("#577590")
+DARK_GREY = pygame.Color("#5A5A5A")
 BLUE = pygame.Color("#277DA1")
 BLACK = pygame.Color("#032834")
 WHITE = pygame.Color("#FFFFEF")
@@ -41,8 +41,8 @@ def Colour_Palette(pos):
     Green.draw(screen, ui.pin_x(-0.9,370),0.9)
     Turquoise.draw(screen, ui.pin_x(-0.9,420),0.9)
     Cyan.draw(screen, ui.pin_x(-0.9,470),0.9)
-    Dark_Grey.draw(screen, ui.pin_x(-0.9,520),0.9)
-    Blue.draw(screen, ui.pin_x(-0.9,570),0.9)
+    Blue.draw(screen, ui.pin_x(-0.9,520),0.9)
+    Dark_Grey.draw(screen, ui.pin_x(-0.9,570),0.9)
     Black.draw(screen, ui.pin_x(-0.9,620),0.9)
     White.draw(screen, ui.pin_x(-0.9,670),0.9)
     COLOUR_text.draw(screen, ui.pin_x(-0.9,396), ui.pin_y(0.9,-32))
@@ -73,7 +73,7 @@ connect_button = ui.Button(400, 60, BLACK, "Connect to server", 60, WHITE)
 
 colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
 rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
-COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan           Dark Grey           Blue                Black             White", 13, 0)
+COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan                Blue           Dark Grey           Black             White", 13, 0)
 red = ui.Label(8, 50, RED, "", 14, 0)
 orange = ui.Label(8, 50, ORANGE, "", 14, 0)
 yellow = ui.Label(8, 50, YELLOW, "", 14, 0)
@@ -97,9 +97,9 @@ White = ui.Label(50, 50, WHITE, "", 0, 0)
 rect = ui.Label(600,50, WHITE, "", 0, 0)
 
 #test bubbles
-# t = "This is a test sentence which is testing the bubble functionality. This sentence should be split across several lines."
-# testBubble = ui.Bubble(GREEN, "saketh", 50, WHITE)
-# multiLineTestBubble = ui.Bubble(GREEN, t, 20, WHITE)
+t = "This is a test sentence which is testing the bubble functionality. This sentence should be split across several lines."
+testBubble = ui.Bubble(GREEN, "saketh", 50, WHITE)
+multiLineTestBubble = ui.Bubble(GREEN, t, 20, WHITE)
 
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
@@ -173,7 +173,7 @@ while is_running:
             replyBubble.draw(screen, ui.pin_x(0, -50), ui.pin_y(0, msg_y))
         msg_y -= 45
 
-    msg_to_send = "."
+    msg_to_send = "." # setting the message as blank as default for when there are no new messages each frame.
         
     # EVENT CHECK AFTER DRAWING ALL OBJECTS
 
@@ -227,5 +227,4 @@ while is_running:
     
     
     pygame.display.update()
-    clock.tick(60)
 
