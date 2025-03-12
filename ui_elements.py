@@ -63,10 +63,10 @@ def animate_x(start, end, pos, speed,):
     #makes the rectangle speed up until half way and then slowes it down until back to speed = 0.1
     if pinned_pos <= (start + (end - start)/2):
         pos += speed
-        speed += 0.1
-    elif speed > 0.1:
+        speed += 0.2
+    elif speed > 0.2:
         pos += speed
-        speed -= 0.1
+        speed -= 0.2
     return pos, speed
 #Separates a line of text into multiple lines with a set character limit which has not been fixed yet
 def multi_line_separator(text, char_limit):

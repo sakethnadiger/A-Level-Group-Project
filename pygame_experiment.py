@@ -83,7 +83,7 @@ Dark_Grey = ui.Label(51, 50, ui.DARK_GREY, "", 0, 0)
 Blue = ui.Label(51, 50, ui.BLUE, "", 0, 0)
 Black = ui.Label(51, 50, ui.BLACK, "", 0, 0)
 White = ui.Label(50, 50, ui.WHITE, "", 0, 0)
-rect = ui.Label(590, 80, ui.WHITE, "", 0, 0)
+rect = ui.Label(595, 80, ui.WHITE, "", 0, 0)
 
 #test bubbles
 t = "This is a test sentence which is testing the bubble functionality. This sentence should be split across several lines."
@@ -188,8 +188,8 @@ while is_running:
                     HEIGHT = 600
         if colours.is_clicked(event, clicked_colour):
             show_palette = not show_palette
-            palette_pos = 390
-            palette_speed = 0.1
+            palette_pos = 394
+            palette_speed = 0.2
             start_point = palette_pos
             colours.reset()
         if connect_button.is_clicked(event, connecting):
@@ -215,6 +215,6 @@ while is_running:
 
     # DON'T DRAW ANYTHING HERE IM LOOKING AT YOU HARVEY
     
-    
+    clock.tick(60)
     pygame.display.update()
 
