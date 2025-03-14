@@ -47,7 +47,6 @@ while True:
     if startbutton.is_clicked(event, startchatting):
         chatting = True
         import chat_screen
-        pygame.quit()
     
 
     pygame.display.update()
