@@ -47,7 +47,8 @@ while True:
     if startbutton.is_clicked(event, startchatting):
         chatting = True
         import chat_screen
-        pygame.quit()    
+        pygame.quit()
+        break    
 
     pygame.display.update()
     clock.tick(60)
