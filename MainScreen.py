@@ -28,7 +28,7 @@ def quitchatting():
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 footer = ui.Label(WIDTH*3, (HEIGHT//4), ui.BLACK, "", 0, 0)
 title = ui.Bubble(ui.WHITE, "AWESOME TEXT MESSAGING", 50, ui.CYAN)
-startbutton = ui.Button(400, 60, ui.BLACK, "Start Chatting!", 60, ui.CYAN
+startbutton = ui.Button(400, 60, ui.BLACK, "Start Chatting!", 60, ui.CYAN)
 optionsbutton = ui.Button(400, 60, ui.BLACK, "Options", 60, ui.CYAN)
 quitbutton = ui.Button(400, 60, ui.BLACK, "Quit", 60, ui.CYAN)
 
