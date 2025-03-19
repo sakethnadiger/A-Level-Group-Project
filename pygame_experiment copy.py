@@ -7,7 +7,6 @@ network = Network() # creates an instantiation of the network class in network.p
 os.environ['SDL_VIDEO_WINDOW_POS'] = f"{100}, {100}"
 
 # ui_elements refers to the python file in the same folder. this is basically our own homemade library of classes of ui elements that we have made. see that file for more info.
-#BTW I HAVE SHORTENED THE UI LIBRARY NAME TO JUST "UI" - WILL SPEED UP DEVELOPMENT
 RED = pygame.Color("#F94144")
 ORANGE = pygame.Color("#F3722C")
 LIGHT_ORANGE = pygame.Color("#F8961E")
