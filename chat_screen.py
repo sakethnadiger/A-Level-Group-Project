@@ -2,7 +2,7 @@ import pygame
 import os
 import ui_elements as ui
 from Network import Network
-network = Network()
+#network = Network()
 
 os.environ['SDL_VIDEO_WINDOW_POS'] = f"{100}, {100}"
 
@@ -43,17 +43,17 @@ while is_running:
     connect_button.draw(screen, ui.pin_x(-1, (connect_button.width//2 + 10)), ui.pin_y(1, -(connect_button.height//2 + 10)))
     
     # read pygame_experiment.py for an explanation
-    if connected:
-        if msg_to_send != ".":
-            print("sending", msg_to_send)
-            chat_history.append(msg_to_send + "¬0")
-        reply = network.send(msg_to_send)
-        if reply == None:
-            print("Not able to connect. Please check that the server is running, or ask yash for help. ")
-            connected = False
-        elif reply != ".":
-            print("recieved", reply)
-            chat_history.append(reply + "¬1")
+    # if connected:
+    #     if msg_to_send != ".":
+    #         print("sending", msg_to_send)
+    #         chat_history.append(msg_to_send + "¬0")
+    #     reply = network.send(msg_to_send)
+    #     if reply == None:
+    #         print("Not able to connect. Please check that the server is running, or ask yash for help. ")
+    #         connected = False
+    #     elif reply != ".":
+    #         print("recieved", reply)
+    #         chat_history.append(reply + "¬1")
             
     msg_y = 100
     for msg in chat_history:

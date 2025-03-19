@@ -218,7 +218,12 @@ class InputBox(Label):
             if event.key == pygame.K_BACKSPACE:
                 self.text = self.text[:-1] 
             else:
-                if event.key != pygame.K_RETURN:
+                if event.key == pygame.K_LCTRL or event.key == pygame.K_RCTRL:
+                    keys = pygame.key.get_pressed()
+                    print(keys)
+                    if keys[pygame.K_RCTRL] and keys[pygame.K_BACKSPACE] or keys[pygame.K_LCTRL] and keys[pygame.K_BACKSPACE]:
+                        self.text = ""
+                if event.key not in [pygame.K_RETURN, pygame.K_BACKSPACE, pygame.K_LCTRL, pygame.K_RCTRL]:
                     self.text += event.unicode
     
     def get_text(self, event):
