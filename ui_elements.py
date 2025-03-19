@@ -68,6 +68,21 @@ def animate_x(start, end, pos, speed,):
         pos += speed
         speed -= 0.2
     return pos, speed
+
+def animate_y(start, end, pos, speed,):
+    #turns the given coordinate into its true coordinate value
+    start = int(pygame.display.get_window_size()[1] //2 * (1 + start))
+    end = int(pygame.display.get_wndow_size()[1] //2 * (1 + end))
+    #gets the true value of pos when it is pinned to -0.9
+    pinned_pos = int(pygame.display.get_window_size()[1] //2 * (1 + pin_y(0.6, pos)))#change 0.6 to the coord you want to pin too.
+    #makes the rectangle speed up until half way and then slowes it down until back to speed = 0.1
+    if pinned_pos <= (start + (end - start)/2):
+        pos += speed
+        speed += 0.2
+    elif speed > 0.2:
+        pos += speed
+        speed -= 0.2
+    return pos, speed
 #Separates a line of text into multiple lines with a set character limit which has not been fixed yet
 def multi_line_separator(text, char_limit):
     if len(text) <= char_limit:
