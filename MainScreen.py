@@ -25,13 +25,13 @@ def startchatting():
     print("Chatting start!")
     return True
 
-def settingsmenu():
-    print("Time to change settings")
-    return True
+# def settingsmenu():
+    # print("Time to change settings")
+    # return True
 
-def settingscolourchange():
-    print("Changing colour to red")
-    return True
+# def settingscolourchange():
+    # print("Changing colour to red")
+    # return True
 
 def quitchatting():
     print("Quitting")
@@ -75,21 +75,21 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
 
-    # if startbutton.is_clicked(event, startchatting):
-    #     chatting = True
-    #     import chat_screen
-    #     startbutton.reset()
-    #     pygame.quit()
+    if startbutton.is_clicked(event, startchatting):
+        chatting = True
+        import chat_screen
+        startbutton.reset()
+        pygame.quit()
     
-    if optionsbutton.is_clicked(event, settingsmenu):
-        settings = True
-        optionsbutton.reset()
+    # if optionsbutton.is_clicked(event, settingsmenu):
+        # settings = True
+        # optionsbutton.reset()
     
     if quitbutton.is_clicked(event, quitchatting):
         pygame.quit()
 
-    if settingscolour.is_clicked(event, settingscolourchange):
-        bgcolour = RED
+    # if settingscolour.is_clicked(event, settingscolourchange):
+        # bgcolour = RED
 
     pygame.display.update()
     clock.tick(60)
