@@ -102,7 +102,8 @@ connected = False
 
 clock = pygame.time.Clock()
 
-chat_history = []
+msg_y = 100
+chat_history = ["yash¬0", "hey¬1"]
 while is_running:
   
     # DRAW OBJECTS FIRST
@@ -149,7 +150,7 @@ while is_running:
             chat_history.append(reply + "¬1")
 
     # printing the chat history, so that each persons message is on the opposite side and the next message is lower each time
-    msg_y = 100
+    initial = msg_y
     for msg in chat_history:
         msg, id = msg.split("¬")
         if id == "0":
@@ -159,6 +160,7 @@ while is_running:
             replyBubble = ui.Bubble(ui.GREEN, msg, 40, ui.WHITE)
             replyBubble.draw(screen, ui.pin_x(0, -50), ui.pin_y(0, msg_y))
         msg_y -= 45
+    msg_y = initial
 
     msg_to_send = "." # setting the message as blank as default for when there are no new messages each frame.
         
@@ -185,6 +187,9 @@ while is_running:
                     screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
                     WIDTH = 800
                     HEIGHT = 600
+        elif event.type == pygame.MOUSEWHEEL:
+            msg_y += event.y * 10
+            
         if colours.is_clicked(event, clicked_colour):
             show_palette = not show_palette
             palette_pos = 394
