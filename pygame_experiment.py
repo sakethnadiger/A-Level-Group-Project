@@ -182,8 +182,8 @@ while is_running:
                     
                 else:
                     #Following two lines help reset window size to previous state also
-                    pygame.display.quit()
-                    pygame.display.init()
+                    # pygame.display.quit()
+                    # pygame.display.init()
                     screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
                     WIDTH = 800
                     HEIGHT = 600

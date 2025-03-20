@@ -40,7 +40,8 @@ settingscolour = ui.Button(400, 60, ui.BLACK, "Change Colour", 60, ui.CYAN)
 settings = False
 clock = pygame.time.Clock()
 
-while True:
+is_running = True
+while is_running:
 
     screen.fill(ui.WHITE)
     footer.draw(screen, 0, -1)
@@ -54,23 +55,23 @@ while True:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
+            is_running = False
 
-    if startbutton.is_clicked(event, startchatting):
-        chatting = True
-        import chat_screen
-        startbutton.reset()
-        pygame.quit()
-    
-    # if optionsbutton.is_clicked(event, settingsmenu):
-        # settings = True
-        # optionsbutton.reset()
-    
-    if quitbutton.is_clicked(event, quitchatting):
-        pygame.quit()
+        if startbutton.is_clicked(event, startchatting):
+            chatting = True
+            import chat_screen
+            startbutton.reset()
+            is_running = False
+        
+        # if optionsbutton.is_clicked(event, settingsmenu):
+            # settings = True
+            # optionsbutton.reset()
+        
+        if quitbutton.is_clicked(event, quitchatting):
+            is_running = False
 
-    # if settingscolour.is_clicked(event, settingscolourchange):
-        # bgcolour = RED
+        # if settingscolour.is_clicked(event, settingscolourchange):
+            # bgcolour = RED
 
     pygame.display.update()
     clock.tick(60)
