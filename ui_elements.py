@@ -68,6 +68,21 @@ def animate_x(start, end, pos, speed,):
         pos += speed
         speed -= 0.2
     return pos, speed
+
+def animate_y(start, end, pos, speed,):
+    #turns the given coordinate into its true coordinate value
+    start = int(pygame.display.get_window_size()[1] //2 * (1 + start))
+    end = int(pygame.display.get_wndow_size()[1] //2 * (1 + end))
+    #gets the true value of pos when it is pinned to -0.9
+    pinned_pos = int(pygame.display.get_window_size()[1] //2 * (1 + pin_y(0.6, pos)))#change 0.6 to the coord you want to pin too.
+    #makes the rectangle speed up until half way and then slowes it down until back to speed = 0.1
+    if pinned_pos <= (start + (end - start)/2):
+        pos += speed
+        speed += 0.2
+    elif speed > 0.2:
+        pos += speed
+        speed -= 0.2
+    return pos, speed
 #Separates a line of text into multiple lines with a set character limit which has not been fixed yet
 def multi_line_separator(text, char_limit):
     if len(text) <= char_limit:
@@ -136,8 +151,8 @@ class Bubble:
     def draw(self, surface, x, y):
         height_multiplier = len(self.line_objects)#The length of the number of lines is the length of the line_objects list, which is the number the height is multiplied by
         #add 5% of the width and height of the fonts on to the rectangle to act as padding
-        self.width = int(self.line_objects[0].get_width() * 1.05)
-        self.height = int(self.line_objects[0].get_height() * height_multiplier * 1.05)
+        self.width = int(self.line_objects[0].get_width() * 1.15)
+        self.height = int(self.line_objects[0].get_height() * height_multiplier * 1.15)
         new_x = convert_coords(x, y)[0]
         new_y = convert_coords(x, y)[1]
         centred_x = new_x - self.width//2
