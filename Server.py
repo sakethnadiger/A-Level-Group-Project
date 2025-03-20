@@ -59,6 +59,8 @@ def threaded_client(conn, user):
         #     break
 
     print("Lost connection")
+    global userID
+    userID -= 1
     conn.close()
 
 userID = 0

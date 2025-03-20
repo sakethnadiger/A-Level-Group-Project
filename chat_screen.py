@@ -30,13 +30,31 @@ connected = False
 clock = pygame.time.Clock()
 
 
-chat_history = []
+chat_pos = 100
+chat_history = ["yash¬0", "hey¬1"]
 
 
 while is_running:
     
     #DRAW OBJECTS HERE
     screen.fill(ui.WHITE)
+
+    original_chat_pos = chat_pos
+    for msg in chat_history:
+        msg, id = msg.split("¬")
+        if id == "0":
+            replyBubble = ui.Bubble(ui.TURQUOISE, msg, 40, ui.WHITE)
+            # Why does this work when the padding  ------------------------v is 100 and replyBubble.width, even though they are identical??
+            replyBubble.draw(screen, ui.pin_x(1, -50), ui.pin_y(0, chat_pos))
+            # print(replyBubble.width)
+        else:
+            replyBubble = ui.Bubble(ui.GREEN, msg, 40, ui.WHITE)
+            replyBubble.draw(screen, ui.pin_x(-1, 50), ui.pin_y(0, chat_pos))
+        chat_pos -= 45
+    chat_pos = original_chat_pos
+
+    msg_to_send = "."
+    
     footer.draw(screen, 0, -1)
     message_input.width = screen.get_width()*0.5
     message_input.draw(screen, 0, ui.pin_y(-1, (HEIGHT//16)))
@@ -55,20 +73,6 @@ while is_running:
             print("recieved", reply)
             chat_history.append(reply + "¬1")
             
-    msg_y = 100
-    for msg in chat_history:
-        msg, id = msg.split("¬")
-        if id == "0":
-            replyBubble = ui.Bubble(ui.TURQUOISE, msg, 40, ui.WHITE)
-            # Why does this work when the padding  ------------------------v is 100 and replyBubble.width, even though they are identical??
-            replyBubble.draw(screen, ui.pin_x(1, 0), ui.pin_y(0, msg_y))
-            print(replyBubble.width)
-        else:
-            replyBubble = ui.Bubble(ui.GREEN, msg, 40, ui.WHITE)
-            replyBubble.draw(screen, ui.pin_x(0, -50), ui.pin_y(0, msg_y))
-        msg_y -= 45
-
-    msg_to_send = "."
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -87,6 +91,8 @@ while is_running:
                     screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
                     WIDTH = 800
                     HEIGHT = 600
+        elif event.type == pygame.MOUSEWHEEL:
+            chat_pos += event.y * 10
         message = message_input.get_text(event)
         if connect_button.is_clicked(event, connecting):
             connected = True
