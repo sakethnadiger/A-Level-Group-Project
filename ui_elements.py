@@ -147,12 +147,12 @@ class Bubble:
         self.line_objects = []
         for line in lines:
             self.line_objects.append(font.render(line, True, self.text_colour))
-        
-    def draw(self, surface, x, y):
-        height_multiplier = len(self.line_objects)#The length of the number of lines is the length of the line_objects list, which is the number the height is multiplied by
+        self.height_multiplier = len(self.line_objects)#The length of the number of lines is the length of the line_objects list, which is the number the height is multiplied by
         #add 5% of the width and height of the fonts on to the rectangle to act as padding
         self.width = int(self.line_objects[0].get_width() * 1.15)
-        self.height = int(self.line_objects[0].get_height() * height_multiplier * 1.15)
+        self.height = int(self.line_objects[0].get_height() * self.height_multiplier * 1.15)
+        
+    def draw(self, surface, x, y):
         new_x = convert_coords(x, y)[0]
         new_y = convert_coords(x, y)[1]
         centred_x = new_x - self.width//2
@@ -161,7 +161,7 @@ class Bubble:
         pygame.draw.rect(surface, self.colour, bubble_rect, 0, min(self.width, self.height)//2)
 
         for iter, object in enumerate(self.line_objects):
-            surface.blit(object, (centred_x + (self.width//2) - self.line_objects[0].get_width()//2, centred_y + ((self.height//(2*height_multiplier)) + (iter*self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2)))
+            surface.blit(object, (centred_x + (self.width//2) - self.line_objects[0].get_width()//2, centred_y + ((self.height//(2*self.height_multiplier)) + (iter*self.line_objects[0].get_height()) - self.line_objects[0].get_height()//2)))
         
         
 #Inherited buton from label.

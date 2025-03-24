@@ -102,6 +102,8 @@ connected = False
 
 clock = pygame.time.Clock()
 
+username = "¬supayash1"
+
 msg_y = 100
 chat_history = ["yash¬0", "hey¬1"]
 while is_running:
@@ -135,7 +137,7 @@ while is_running:
     if connected:
         # the way the server system is set up is that we have to send something every frame. we just send a full stop as a "null" message in order to
         # say that nothing is being sent on this frame.
-        if msg_to_send != ".":
+        if msg_to_send != "." and msg_to_send[0] != "¬":
             print("sending", msg_to_send)
             # "chat history" is a list stored on the clients device that contains the chat history so we can draw it each frame.
             chat_history.append(msg_to_send + "¬0") # attatching a userID to each message so we know which ones were sent by who. I used an arbitrary character "¬" bc no ones gonna type that
@@ -198,7 +200,7 @@ while is_running:
             colours.reset()
         if connect_button.is_clicked(event, connecting):
             connected = True
-            connect_button.reset()
+            msg_to_send = username
         inp = textbox.get_text(event)
         if inp is not None:
             msg_to_send = inp

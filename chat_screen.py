@@ -2,7 +2,7 @@ import pygame
 import os
 import ui_elements as ui
 from Network import Network
-#network = Network()
+network = Network()
 
 os.environ['SDL_VIDEO_WINDOW_POS'] = f"{100}, {100}"
 
@@ -45,15 +45,14 @@ while is_running:
         if id == "0":
             replyBubble = ui.Bubble(ui.TURQUOISE, msg, 40, ui.WHITE)
             # Why does this work when the padding  ------------------------v is 100 and replyBubble.width, even though they are identical??
-            replyBubble.draw(screen, ui.pin_x(1, -50), ui.pin_y(0, chat_pos))
+            replyBubble.draw(screen, ui.pin_x(1, -(replyBubble.width//2 + 20)), ui.pin_y(0, chat_pos))
             # print(replyBubble.width)
         else:
             replyBubble = ui.Bubble(ui.GREEN, msg, 40, ui.WHITE)
-            replyBubble.draw(screen, ui.pin_x(-1, 50), ui.pin_y(0, chat_pos))
+            replyBubble.draw(screen, ui.pin_x(-1, (replyBubble.width//2 + 20)), ui.pin_y(0, chat_pos))
         chat_pos -= 45
     chat_pos = original_chat_pos
 
-    msg_to_send = "."
     
     footer.draw(screen, 0, -1)
     message_input.width = screen.get_width()*0.5
@@ -61,18 +60,19 @@ while is_running:
     connect_button.draw(screen, ui.pin_x(-1, (connect_button.width//2 + 10)), ui.pin_y(1, -(connect_button.height//2 + 10)))
     
     # read pygame_experiment.py for an explanation
-    # if connected:
-    #     if msg_to_send != ".":
-    #         print("sending", msg_to_send)
-    #         chat_history.append(msg_to_send + "¬0")
-    #     reply = network.send(msg_to_send)
-    #     if reply == None:
-    #         print("Not able to connect. Please check that the server is running, or ask yash for help. ")
-    #         connected = False
-    #     elif reply != ".":
-    #         print("recieved", reply)
-    #         chat_history.append(reply + "¬1")
-            
+    if connected:
+        if msg_to_send != ".":
+            print("sending", msg_to_send)
+            chat_history.append(msg_to_send + "¬0")
+        reply = network.send(msg_to_send)
+        if reply == None:
+            print("Not able to connect. Please check that the server is running, or ask yash for help. ")
+            connected = False
+        elif reply != ".":
+            print("recieved", reply)
+            chat_history.append(reply + "¬1")
+
+    msg_to_send = "."
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
