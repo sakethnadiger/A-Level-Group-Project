@@ -7,19 +7,7 @@ network = Network() # creates an instantiation of the network class in network.p
 os.environ['SDL_VIDEO_WINDOW_POS'] = f"{100}, {100}"
 
 # ui_elements refers to the python file in the same folder. this is basically our own homemade library of classes of ui elements that we have made. see that file for more info.
-RED = pygame.Color("#F94144")
-ORANGE = pygame.Color("#F3722C")
-LIGHT_ORANGE = pygame.Color("#F8961E")
-PEACH = pygame.Color("#F9844A")
-YELLOW = pygame.Color("#F9C74F")
-GREEN = pygame.Color("#90BE6D")
-TURQUOISE = pygame.Color("#43AA8B")
-CYAN = pygame.Color("#4D908E")
-DARK_GREY = pygame.Color("#5A5A5A")
-BLUE = pygame.Color("#277DA1")
-BLACK = pygame.Color("#032834")
-WHITE = pygame.Color("#FFFFEF")
-
+#BTW I HAVE SHORTENED THE UI LIBRARY NAME TO JUST "UI" - WILL SPEED UP DEVELOPMENT
 
 def Rainbow_Button():
     red.draw(screen, ui.pin_x(-0.9, -21), 0.9)
@@ -31,7 +19,9 @@ def Rainbow_Button():
     violet.draw(screen, ui.pin_x(-0.9, 21), 0.9)  
     rainbow_text.draw(screen, ui.pin_x(-0.9,22),ui.pin_y(0.9,-32))
 
-def Colour_Palette(pos):
+
+
+def Colour_Palette(start, pos, speed):
     Red.draw(screen, ui.pin_x(-0.9,120),0.9)
     Orange.draw(screen, ui.pin_x(-0.9,170),0.9)
     Light_Orange.draw(screen, ui.pin_x(-0.9,220),0.9)
@@ -45,9 +35,9 @@ def Colour_Palette(pos):
     Black.draw(screen, ui.pin_x(-0.9,620),0.9)
     White.draw(screen, ui.pin_x(-0.9,670),0.9)
     COLOUR_text.draw(screen, ui.pin_x(-0.9,396), ui.pin_y(0.9,-32))
-    rect.draw(screen,ui.pin_x(-0.9,pos),0.9)
-    pos += 12
-    return pos
+    pos, speed = ui.animate_x(ui.pin_x(-0.9, start),ui.pin_x(-0.9, 960), pos, speed)
+    rect.draw(screen, ui.pin_x(-0.9, pos), 0.9)   
+    return start, pos, speed
 pygame.init() # creates an object of the pygame class to make our window
 
 pygame.display.set_caption('Chatroom') # sets the caption at the top of the window
@@ -66,45 +56,44 @@ def foo():
 def connecting():
     print("connected")
     return True
-logo = ui.Label(350, 25, WHITE, "designed by saketh, harvey, yash and luca.", 25, BLACK)
-textbox = ui.InputBox(300, 40, LIGHT_ORANGE, "Enter text here...", 40, WHITE)
-connect_button = ui.Button(400, 60, BLACK, "Connect to server", 60, WHITE)
+logo = ui.Label(350, 25, ui.WHITE, "designed by saketh, harvey, yash and luca.", 25, ui.BLACK)
+textbox = ui.InputBox(300, 40, ui.LIGHT_ORANGE, "Enter text here...", 40, ui.WHITE)
+connect_button = ui.Button(400, 60, ui.BLACK, "Connect to server", 60, ui.WHITE)
 
-colours = ui.Button(48, 50, 0, "", 10 , (WHITE))
-rainbow_text = ui.Label(0, 0, YELLOW, "Show colour palette", 14, 0)
-COLOUR_text = ui.Label(0, 0, YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan                Blue           Dark Grey           Black             White", 13, 0)
-red = ui.Label(8, 50, RED, "", 14, 0)
-orange = ui.Label(8, 50, ORANGE, "", 14, 0)
-yellow = ui.Label(8, 50, YELLOW, "", 14, 0)
-green = ui.Label(8, 50, GREEN, "", 14, 0)
-blue = ui.Label(8, 50, BLUE, "", 14, 0)
+colours = ui.Button(48, 50, 0, "", 10 , (ui.WHITE))
+rainbow_text = ui.Label(0, 0, ui.YELLOW, "Show colour palette", 14, 0)
+COLOUR_text = ui.Label(0, 0, ui.YELLOW, "Red              Orange      Light Orange       Peach             Yellow             Green          Turquoise           Cyan                Blue           Dark Grey           Black             White", 13, 0)
+red = ui.Label(8, 50, ui.RED, "", 14, 0)
+orange = ui.Label(8, 50, ui.ORANGE, "", 14, 0)
+yellow = ui.Label(8, 50, ui.YELLOW, "", 14, 0)
+green = ui.Label(8, 50, ui.GREEN, "", 14, 0)
+blue = ui.Label(8, 50, ui.BLUE, "", 14, 0)
 indigo = ui.Label(8, 50, "#4B369D", "", 14, 0)
 violet = ui.Label(7, 50, "#70369d", "", 14, 0)
 
-Red = ui.Label(51, 50, RED, "", 0, 0)
-Orange = ui.Label(51, 50, ORANGE, "", 0, 0)
-Light_Orange = ui.Label(51, 50, LIGHT_ORANGE, "", 0, 0)
-Peach = ui.Label(51, 50, PEACH, "", 0, 0)
-Yellow = ui.Label(51, 50, YELLOW, "", 0, 0)
-Green = ui.Label(51, 50, GREEN, "", 0, 0)
-Turquoise = ui.Label(51, 50, TURQUOISE, "", 0, 0)
-Cyan = ui.Label(51, 50, CYAN, "", 0, 0)
-Dark_Grey = ui.Label(51, 50, DARK_GREY, "", 0, 0)
-Blue = ui.Label(51, 50, BLUE, "", 0, 0)
-Black = ui.Label(51, 50, BLACK, "", 0, 0)
-White = ui.Label(50, 50, WHITE, "", 0, 0)
-rect = ui.Label(600,50, WHITE, "", 0, 0)
+Red = ui.Label(51, 50, ui.RED, "", 0, 0)
+Orange = ui.Label(51, 50, ui.ORANGE, "", 0, 0)
+Light_Orange = ui.Label(51, 50, ui.LIGHT_ORANGE, "", 0, 0)
+Peach = ui.Label(51, 50, ui.PEACH, "", 0, 0)
+Yellow = ui.Label(51, 50, ui.YELLOW, "", 0, 0)
+Green = ui.Label(51, 50, ui.GREEN, "", 0, 0)
+Turquoise = ui.Label(51, 50, ui.TURQUOISE, "", 0, 0)
+Cyan = ui.Label(51, 50, ui.CYAN, "", 0, 0)
+Dark_Grey = ui.Label(51, 50, ui.DARK_GREY, "", 0, 0)
+Blue = ui.Label(51, 50, ui.BLUE, "", 0, 0)
+Black = ui.Label(51, 50, ui.BLACK, "", 0, 0)
+White = ui.Label(50, 50, ui.WHITE, "", 0, 0)
+rect = ui.Label(595, 80, ui.WHITE, "", 0, 0)
 
 #test bubbles
 t = "This is a test sentence which is testing the bubble functionality. This sentence should be split across several lines."
-testBubble = ui.Bubble(GREEN, "saketh", 50, WHITE)
-multiLineTestBubble = ui.Bubble(GREEN, t, 20, WHITE)
+testBubble = ui.Bubble(ui.GREEN, "saketh", 50, ui.WHITE)
+multiLineTestBubble = ui.Bubble(ui.GREEN, t, 20, ui.WHITE)
 
 # IN PYGAME YOU ALWAYS USE THIS WHILE LOOP STRUCTURE, THIS IS THE CORE SYSTEM OF PYGAME.
 # it is what allows us to constantly check for things like clicks and button presses each frame.
 
 show_palette = False
-palette_cover_pos = 396
 
 is_running = True
 fullscreen = False
@@ -113,22 +102,24 @@ connected = False
 
 clock = pygame.time.Clock()
 
-messages = []
-chat_history = []
+username = "¬supayash1"
+
+msg_y = 100
+chat_history = ["yash¬0", "hey¬1"]
 while is_running:
   
     # DRAW OBJECTS FIRST
-    screen.fill(WHITE)
+    screen.fill(ui.WHITE)
     textbox.draw(screen, 0, -0.7)
     logo.draw(screen, ui.pin_x(1, -(logo.width//2 + 10)), ui.pin_y(-1, (logo.height//2 + 5)))
     connect_button.draw(screen, 0,0.5)
     # testBubble.draw(screen, 0, 0.5)
     # multiLineTestBubble.draw(screen, 0.5, 0.5)
-    
+
     colours.draw(screen, -0.9, 0.9)
     Rainbow_Button()
     if show_palette == True:
-        palette_cover_pos = Colour_Palette(palette_cover_pos)
+        start_point, palette_pos, palette_speed = Colour_Palette(start_point, palette_pos, palette_speed)
 
     # SENDING DATA
 
@@ -146,7 +137,7 @@ while is_running:
     if connected:
         # the way the server system is set up is that we have to send something every frame. we just send a full stop as a "null" message in order to
         # say that nothing is being sent on this frame.
-        if msg_to_send != ".":
+        if msg_to_send != "." and msg_to_send[0] != "¬":
             print("sending", msg_to_send)
             # "chat history" is a list stored on the clients device that contains the chat history so we can draw it each frame.
             chat_history.append(msg_to_send + "¬0") # attatching a userID to each message so we know which ones were sent by who. I used an arbitrary character "¬" bc no ones gonna type that
@@ -161,16 +152,17 @@ while is_running:
             chat_history.append(reply + "¬1")
 
     # printing the chat history, so that each persons message is on the opposite side and the next message is lower each time
-    msg_y = 100
+    initial = msg_y
     for msg in chat_history:
         msg, id = msg.split("¬")
         if id == "0":
-            replyBubble = ui.Bubble(TURQUOISE, msg, 40, WHITE)
+            replyBubble = ui.Bubble(ui.TURQUOISE, msg, 40, ui.WHITE)
             replyBubble.draw(screen, ui.pin_x(0, 50), ui.pin_y(0, msg_y))
         else:
-            replyBubble = ui.Bubble(GREEN, msg, 40, WHITE)
+            replyBubble = ui.Bubble(ui.GREEN, msg, 40, ui.WHITE)
             replyBubble.draw(screen, ui.pin_x(0, -50), ui.pin_y(0, msg_y))
         msg_y -= 45
+    msg_y = initial
 
     msg_to_send = "." # setting the message as blank as default for when there are no new messages each frame.
         
@@ -192,38 +184,30 @@ while is_running:
                     
                 else:
                     #Following two lines help reset window size to previous state also
-                    pygame.display.quit()
-                    pygame.display.init()
+                    # pygame.display.quit()
+                    # pygame.display.init()
                     screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
                     WIDTH = 800
                     HEIGHT = 600
+        elif event.type == pygame.MOUSEWHEEL:
+            msg_y += event.y * 10
+            
         if colours.is_clicked(event, clicked_colour):
             show_palette = not show_palette
-            palette_cover_pos = 396
+            palette_pos = 394
+            palette_speed = 0.2
+            start_point = palette_pos
             colours.reset()
         if connect_button.is_clicked(event, connecting):
             connected = True
-            connect_button.reset()
-        #Check if the enter/return key is pressed. If it is the current value in the textbox is returned and set as a variable
+            msg_to_send = username
         inp = textbox.get_text(event)
-        #Currently the messages which are actually valid are being appended to a 'messages' list which is defined outside the while loop
-        #If we are using this system could put the if statement below into the class but if not then do not
-        #Also changed the updating of the text box so it does not display unicode of the return key
         if inp is not None:
-            messages.append(inp)
             msg_to_send = inp
         textbox.update(event)
 
-    # if len(messages) > 0:
-    #     messageBubble = ui.Bubble(BLUE, messages[0], 40, WHITE)
-    #     messageReal = True
-    #     messages.pop(0)
-        
-    # if messageReal == True:
-    #     messageBubble.draw(screen, ui.pin_x(-1, messageBubble.width // 2 + 20), ui.pin_y(-1, messageBubble.height // 2 + 20))
-
     # DON'T DRAW ANYTHING HERE IM LOOKING AT YOU HARVEY
     
-    
+    clock.tick(60)
     pygame.display.update()
 
